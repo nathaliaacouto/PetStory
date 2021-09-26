@@ -6,8 +6,8 @@ Trabalhamos com uma loja parceira na região de Recife, PE. Atualmente, o sistem
 
 <h3>Página dos integrantes no github</h3>
 <ul>
-🔸 <a href="https://github.com/lucasborges">Lucas Borges</a><br>
-🔸 <a href="https://github.com/lucasLBF">Lucas Fernandes</a><br>
-🔸 <a href="https://github.com/Matheus-F-M">Matheus Mendonça</a><br>
-🔸 <a href="https://github.com/nathaliaacouto">Nathália Couto</a>
+🔸 <a target="_blank" href="https://github.com/lucasborges">Lucas Borges</a><br>
+🔸 <a target="_blank" href="https://github.com/lucasLBF">Lucas Fernandes</a><br>
+🔸 <a target="_blank" href="https://github.com/Matheus-F-M">Matheus Mendonça</a><br>
+🔸 <a target="_blank" href="https://github.com/nathaliaacouto">Nathália Couto</a>
 </ul>
