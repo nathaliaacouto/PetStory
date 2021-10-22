@@ -1,0 +1,12 @@
+.services-container {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.service-container {
+  border: solid 1px #444;
+  padding: 1rem 3rem;
+}

@@ -1,0 +1,25 @@
+{
+  "queue": [
+    {
+      "dog": "Aylla",
+      "breed": "Shihtzu",
+      "owner": "Lucas",
+      "phone": "45789545",
+      "email": "lucas@gmail.com"
+    },
+    {
+      "dog": "Max",
+      "breed": "Pug",
+      "owner": "Borges",
+      "phone": "78945622",
+      "email": "borges@gmail.com"
+    },
+    {
+      "dog": "Tony",
+      "breed": "Shih",
+      "owner": "Maju",
+      "phone": "78945612",
+      "email": "maju@gmail.com"
+    }
+  ]
+}

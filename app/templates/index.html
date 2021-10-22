@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetStory</title>
+  </head>
+  <body>
+    <h1>Fila de Atendimento</h1>
+    <div class="queue">
+      {% for dog in dogs %}
+      <div class="dog-container">
+        <h3>{{ dog.name }}</h3>
+        <hr />
+        <p>{{ dog.info }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
