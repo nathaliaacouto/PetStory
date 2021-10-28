@@ -16,7 +16,7 @@ def index():
             "info": "Pug"
         }
     ]
-    return render_template("index.html", dogs=dogs)
+    return render_template("index.html", dogs=dogs, title="Home")
 
 @app.route("/atendimento", methods=["GET", "POST"])
 def atendimento():
@@ -30,9 +30,9 @@ def atendimento():
             "email" : form.email.data
         }
         Model.create(data)
-    return render_template('registro.html', form=form)
+    return render_template('registro.html', form=form, title="Novo Atendimento")
 
 @app.route("/fila")
 def fila():
     data = Model.read()
-    return render_template("queue.html", data=data)
+    return render_template("queue.html", data=data, title="Fila de Atendimentos")
