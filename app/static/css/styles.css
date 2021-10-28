@@ -1,3 +1,155 @@
+/* - Font sizes (px):
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
+
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GLOBAL STYLES */
+
+html {
+  /* REM: 10px */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #444;
+}
+
+/* Reusable Components */
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.heading-primary {
+  font-size: 3.2rem;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.heading-secondary {
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.form-label {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.6rem;
+}
+
+.btn {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.8rem;
+  opacity: 1;
+  transition: all 300ms;
+}
+
+/* USER REGISTER */
+
+.register-form {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  row-gap: 3rem;
+  column-gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.name {
+  grid-column: 1 / 4;
+}
+
+.breed {
+  grid-column: 4 / 6;
+}
+
+.age {
+  grid-column: 6 / 8;
+}
+
+.owner {
+  grid-column: 1 / 4;
+}
+
+.cpf {
+  grid-column: 4 / 6;
+}
+
+.phone {
+  grid-column: 6 / 8;
+}
+
+.zip-code {
+  grid-column: 1 / 3;
+}
+
+.address {
+  grid-column: 3 / 6;
+}
+
+.email {
+  grid-column: 6 / 8;
+}
+
+.register-form__photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3.2rem;
+}
+
+.register-form__add-photo {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+
+.register-form__actions {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.cancel-btn:link,
+.cancel-btn:visited {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #f03e3e;
+}
+
+.cancel-btn:hover,
+.cancel-btn:active {
+  opacity: 0.5;
+}
+
+.submit-btn {
+  border: none;
+  background-color: #51cf66;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  opacity: 0.5;
+}
+
+/* MISC */
 .services-container {
   padding: 0 0.5rem;
   display: flex;

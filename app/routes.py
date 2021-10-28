@@ -1,26 +1,16 @@
 from flask import render_template
 from app import app
-from app.forms import AtendimentoForm
+from app.forms import RegisterForm
 from app.models import Model
 
 @app.route("/")
-@app.route("/index")
-def index():
-    dogs = [
-        {
-            "name": "Aylla",
-            "info": "Shihtzu"
-        },
-        {
-            "name": "Stella",
-            "info": "Pug"
-        }
-    ]
-    return render_template("index.html", dogs=dogs, title="Home")
+@app.route("/login")
+def login():
+    return render_template("login.html", title="Login")
 
 @app.route("/atendimento", methods=["GET", "POST"])
 def atendimento():
-    form = AtendimentoForm()
+    form = RegisterForm()
     if form.validate_on_submit():
         data = {
             "dog" : form.dog.data,
