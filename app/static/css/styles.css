@@ -69,7 +69,15 @@ li a:hover {
   color: #00AEAC;
 }
 
+.titulo {
+  margin-left: 10%;
+  margin-top: 30px;
+  margin-bottom: 5%;
+  color: #00AEAC;
+}
+
 .sobre {
+  margin-top: 10px;
   width: 100%;
   overflow: hidden;
   display: inline;
@@ -78,11 +86,106 @@ li a:hover {
 #sobre-texto {
   width: 35%;
   float: left;
-  margin-top: 30px;
+  margin-top: 0;
   margin-left: 10%;
   margin-right: 10%;
 }
 
 #sobre-img {
   margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+#experimente button {
+  border: 1px #FFBC01 solid;
+  background-color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 10px 30px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+#experimente button a {
+  color: black;
+}
+
+#experimente button:hover {
+  background-color: #00AEAC;
+}
+
+#experimente button a:hover {
+  color: white;
+}
+
+#funciona {
+  overflow: hidden;
+  width: 90%;
+  margin-top: 30px;
+}
+
+#funciona h2 {
+  margin-left: 10%;
+}
+
+.quadros {
+  clear: both;
+  display: inline;
+}
+
+.balcao {
+  float: left;
+  margin-left: 10%;
+  margin-top: 20px;
+  border: 2px black solid;
+  width: 20%;
+  text-align: center;
+}
+
+.tosa {
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-right: 115px;
+  border: 2px black solid;
+  width: 20%;
+  text-align: center;
+}
+
+#func-texto {
+  margin-top: 20px;
+}
+
+#grupo {
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+#grupo h2 {
+  margin-left: 9%;
+}
+
+.grupo-container {
+  clear: both;
+  display: inline;
+}
+
+#grupo-texto {
+  float: left;
+  margin-left: 9%;
+  width: 40%;
+  margin-right: 60px;
+}
+
+#grupo-foto {
+  float: left;
+}
+
+.integrante {
+  margin-top: 10px;
+  width: 80px;
+  border-radius: 60%;
 }
