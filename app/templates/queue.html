@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
-    <title>PetStory | Fila de Atendimento</title>
-  </head>
-  <body>
-    <h1>Fila de Atendimentos</h1>
-    <div class="services-container">
-      {% for dog in data.queue %}
-      <div class="service-container">
-        <p>Nome: {{ dog.dog }}</p>
-        <p>Raça: {{ dog.breed }}</p>
-        <p>Dono: {{ dog.owner }}</p>
-        <button class="del-btn" onclick="{deleteDog}">Deletar</button>
-      </div>
-      {% endfor %}
-    </div>
-  </body>
-  <script>
-    function deleteDog() {
-      console.log(`deleting...`);
-    }
-    const deleteBtnArr = document.querySelectorAll(".del-btn");
-    for (btn of deleteBtnArr) {
-      btn.addEventListener("click", deleteDog);
-    }
-  </script>
-</html>
+{% extends "base.html" %} {% block content %}
+<h1>Fila de Atendimentos</h1>
+<div class="services-container">
+  {% for dog in data.queue %}
+  <div class="service-container">
+    <p>Nome: {{ dog.dog }}</p>
+    <p>Raça: {{ dog.breed }}</p>
+    <p>Dono: {{ dog.owner }}</p>
+    <button class="del-btn" onclick="{deleteDog}">Deletar</button>
+  </div>
+  {% endfor %}
+</div>
+<script>
+  function deleteDog() {
+    console.log(`deleting...`);
+  }
+  const deleteBtnArr = document.querySelectorAll(".del-btn");
+  for (btn of deleteBtnArr) {
+    btn.addEventListener("click", deleteDog);
+  }
+</script>
+{% endblock %}

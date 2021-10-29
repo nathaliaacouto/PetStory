@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,3 +73,17 @@
   </body>
 
 </html>
+=======
+{% extends "base.html" %} {% block content %}
+<h1>Fila de Atendimento</h1>
+<div class="queue">
+  {% for dog in dogs %}
+  <div class="dog-container">
+    <h3>{{ dog.name }}</h3>
+    <hr />
+    <p>{{ dog.info }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+>>>>>>> dd1964ac6180dcd1ccd32457116ef095787dc60a
