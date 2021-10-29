@@ -157,8 +157,3 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-
-.service-container {
-  border: solid 1px #444;
-  padding: 1rem 3rem;
-}
