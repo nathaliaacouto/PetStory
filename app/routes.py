@@ -1,6 +1,8 @@
-from flask import render_template
-from app import app
+from flask import render_template, redirect
+from flask.helpers import url_for
+from app import app, db
 from app.forms import RegisterForm
+from app.models import Cliente, Pet
 from app.model import Model
 
 @app.route("/")
@@ -8,18 +10,29 @@ from app.model import Model
 def login():
     return render_template("login.html", title="Login")
 
-@app.route("/atendimento", methods=["GET", "POST"])
-def atendimento():
+@app.route("/registro", methods=["GET", "POST"])
+def registro():
     form = RegisterForm()
     if form.validate_on_submit():
-        data = {
-            "dog" : form.dog.data,
-            "breed" : form.breed.data,
-            "owner" : form.owner.data,
-            "phone" : form.phone.data,
-            "email" : form.email.data
-        }
-        Model.create(data)
+        cliente = Cliente(
+            nome=form.owner.data,
+            telefone=form.phone.data,
+            cpf=form.cpf.data,
+            cep=form.zip_code.data,
+            endereco=form.address.data,
+            email=form.email.data,
+        )
+        db.session.add(cliente)
+        db.session.commit()
+        pet = Pet(
+            nome=form.dog.data,
+            raca=form.breed.data,
+            obito=False,
+            dono_id=cliente.id
+        )
+        db.session.add(pet)
+        db.session.commit()
+        return redirect(url_for('registro'))
     return render_template('registro.html', form=form, title="Novo Atendimento")
 
 @app.route("/fila")
