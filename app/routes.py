@@ -1,7 +1,7 @@
 from flask import render_template
 from app import app
 from app.forms import RegisterForm
-from app.models import Model
+from app.model import Model
 
 @app.route("/")
 @app.route("/login")

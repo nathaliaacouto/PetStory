@@ -1,20 +1,25 @@
-import json
+from app import db
 
-class Model(object):
-    def read():
-        with open("data.json", "r", encoding="utf-8") as db:
-            json_data = json.loads(db.read())
-            return json_data
+class Cliente(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), index=True)
+    telefone = db.Column(db.String(15))
+    cpf = db.Column(db.String(20))
+    cep = db.Column(db.String(20))
+    endereco = db.Column(db.String(100))
+    email = db.Column(db.String(100), index=True)
+    pets = db.relationship('Pet', backref='dono', lazy='dynamic')
 
-    def create(data: dict):
-        json_data = Model.read()
-        with open("data.json", "w", encoding="utf-8") as db:
-            json_data["queue"].append(data)
-            json.dump(json_data, db, ensure_ascii=False, indent=4)
+    def __repr__(self):
+        return '<Cliente {}>'.format(self.nome)
 
-    def delete(data: dict):
-        json_data = Model.read()
-        updated_json_data = [entry for entry in json_data['queue'] if entry.get("dog") != data["dog"]]
-        json_data['queue'] = updated_json_data
-        with open("data.json", "w", encoding="utf-8") as db:
-            json.dump(updated_json_data, db, ensure_ascii=False, indent=4)
+class Pet(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), index=True)
+    raca = db.Column(db.String(50))
+    pelagem = db.Column(db.String(50))
+    obito = db.Column(db.Boolean, default=False)
+    dono_id = db.Column(db.Integer, db.ForeignKey('cliente.id'))
+
+    def __repr__(self):
+        return '<Pet {}>'.format(self.nome)

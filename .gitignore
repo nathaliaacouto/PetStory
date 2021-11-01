@@ -25,3 +25,6 @@ htmlcov/
 .coverage
 .coverage.*
 *,cover
+
+# app db
+app.db
