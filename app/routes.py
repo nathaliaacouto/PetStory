@@ -1,4 +1,4 @@
-from flask import render_template, redirect
+from flask import render_template, redirect, flash
 from flask.helpers import url_for
 from app import app, db
 from app.forms import RegisterForm
@@ -27,11 +27,14 @@ def registro():
         pet = Pet(
             nome=form.dog.data,
             raca=form.breed.data,
+            idade=form.age.data,
+            pelagem=form.fur.data,
             obito=False,
             dono_id=cliente.id
         )
         db.session.add(pet)
         db.session.commit()
+        flash('Cadastro realizado com sucesso!')
         return redirect(url_for('registro'))
     return render_template('registro.html', form=form, title="Novo Atendimento")
 
