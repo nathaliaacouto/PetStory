@@ -23,11 +23,6 @@ body {
 }
 
 /* Reusable Components */
-.container {
-  max-width: 120rem;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
 
 .heading-primary {
   font-size: 3.2rem;
@@ -64,50 +59,6 @@ body {
 
 /* USER REGISTER */
 
-.register-form {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  row-gap: 3rem;
-  column-gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.name {
-  grid-column: 1 / 4;
-}
-
-.breed {
-  grid-column: 4 / 6;
-}
-
-.age {
-  grid-column: 6 / 8;
-}
-
-.owner {
-  grid-column: 1 / 4;
-}
-
-.cpf {
-  grid-column: 4 / 6;
-}
-
-.phone {
-  grid-column: 6 / 8;
-}
-
-.zip-code {
-  grid-column: 1 / 3;
-}
-
-.address {
-  grid-column: 3 / 6;
-}
-
-.email {
-  grid-column: 6 / 8;
-}
-
 .register-form__photo {
   display: flex;
   flex-direction: column;
@@ -127,33 +78,38 @@ body {
   gap: 2rem;
 }
 
-.cancel-btn:link,
-.cancel-btn:visited {
+.cancel-button:link,
+.cancel-button:visited {
   display: inline-block;
   text-decoration: none;
   background-color: #f03e3e;
 }
 
-.cancel-btn:hover,
-.cancel-btn:active {
+.cancel-button:hover,
+.cancel-button:active {
   opacity: 0.5;
+  color: #fff;
 }
 
-.submit-btn {
+.submit-button {
   border: none;
   background-color: #51cf66;
   cursor: pointer;
 }
 
-.submit-btn:hover {
-  opacity: 0.5;
+.submit-button:hover {
+  opacity: 0.7;
+  color: #fff;
 }
 
-/* MISC */
-.services-container {
-  padding: 0 0.5rem;
+.alert-list {
+  list-style: none;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.alert-list-item {
+  font-size: 1.4rem;
+  width: 40%;
+  text-align: center;
 }

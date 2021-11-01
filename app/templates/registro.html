@@ -1,60 +1,79 @@
-{% extends "base.html" %} {% block head %}
+{% extends "base.html" %} 
+{% block head %}
 <link rel="stylesheet" href="/static/css/registro.css" />
-{% endblock %} {% block content %}
-<div class="container">
-  <h1 class="heading-primary">Cadastrar novo usuário</h1>
-  <form action="" method="post" novalidate>
-    {{ form.hidden_tag() }}
-    <div class="register-form">
-      <div class="form-control name">
+{% endblock %}
+{% block content %}
+<h1 class="heading-primary">Cadastrar novo usuário</h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class="container alert-list" role="alert">
+  {% for message in messages %}
+    <li class="alert alert-success alert-list-item">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<form action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+  <div class="form-control container">
+    <div class="row mb-3">
+      <div class="col-lg-4 col-md-12">
         {{ form.dog.label(class="form-label") }} {{ form.dog(class="form-input")
         }}
       </div>
-      <div class="form-control breed">
+      <div class="col-lg-3 col-md-12">
         {{ form.breed.label(class="form-label") }} {{
         form.breed(class="form-input") }}
       </div>
-      <div class="form-control age">
+      <div class="col-lg-2 col-md-12">
         {{ form.age.label(class="form-label") }} {{ form.age(class="form-input")
         }}
       </div>
-      <div class="form-control owner">
+      <div class="col-lg-3 col-md-12">
+        {{ form.fur.label(class="form-label") }} {{ form.fur(class="form-input")
+        }}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-4 col-md-12">
         {{ form.owner.label(class="form-label") }} {{
         form.owner(class="form-input") }}
       </div>
-      <div class="form-control cpf">
+      <div class="col-lg-4 col-md-12">
         {{ form.cpf.label(class="form-label") }} {{ form.cpf(class="form-input")
         }}
       </div>
-      <div class="form-control phone">
+      <div class="col-lg-4 col-md-12">
         {{ form.phone.label(class="form-label") }} {{
         form.phone(class="form-input") }}
       </div>
-      <div class="form-control zip-code">
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-4 col-md-12">
         {{ form.zip_code.label(class="form-label") }} {{
         form.zip_code(class="form-input") }}
       </div>
-      <div class="form-control address">
+      <div class="col-lg-4 col-md-12">
         {{ form.address.label(class="form-label") }} {{
         form.address(class="form-input") }}
       </div>
-      <div class="form-control email">
+      <div class="col-lg-4 col-md-12">
         {{ form.email.label(class="form-label") }} {{
         form.email(class="form-input") }}
       </div>
     </div>
-    <div class="register-form__photo">
-      <img
-        src="/static/img/default-user-icon.jpg"
-        alt="dog
-    photo"
-      />
-      <p class="register-form__add-photo">Adicionar foto</p>
-    </div>
-    <div class="register-form__actions">
-      <a class="btn cancel-btn" href="/">Cancelar</a>
-      {{ form.submit(class="btn submit-btn") }}
-    </div>
-  </form>
-</div>
+  </div>
+  <div class="register-form__photo">
+    <img
+      src="/static/img/default-user-icon.jpg"
+      alt="dog
+  photo"
+    />
+    <p class="register-form__add-photo">Adicionar foto</p>
+  </div>
+  <div class="register-form__actions">
+    <a class="btn cancel-button" href="/">Cancelar</a>
+    {{ form.submit(class="btn submit-button") }}
+  </div>
+</form>
 {% endblock %}
