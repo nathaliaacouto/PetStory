@@ -1,5 +1,6 @@
 from app.models import Cliente, Pet
 from app import db
+from app.controllers import ClienteController, PetController
 
 def test_app_is_created(app):
     assert app.name == 'app'  
@@ -8,7 +9,23 @@ def test_request_returns_200(client):
     assert client.get("/registro").status_code == 200
 
 def test_registro_cliente(app):
-    c1 = Cliente(
+    cliente_controller = ClienteController()
+    cliente = Cliente(
+        nome="Alberto Silva",
+        telefone="12340987",
+        cpf="89874102147",
+        cep="32147452", 
+        endereco="Rua Exemplo, 854",
+        email="alberto@gmail.com"
+    )
+    cliente_controller.add_cliente(cliente)
+    cliente_db = cliente_controller.get_cliente_by_nome("Alberto Silva")
+    assert cliente_db.nome == cliente.nome
+
+def test_registro_pet(app):
+    pet_controller = PetController()
+    cliente_controller = ClienteController()
+    cliente = Cliente(
         nome="Lucas",
         telefone="12345678",
         cpf="14785236987",
@@ -16,21 +33,13 @@ def test_registro_cliente(app):
         endereco="Rua Exemplo, 123",
         email="lucas@gmail.com"
     )
-    db.session.add(c1)
-    db.session.commit()
-    cliente1 = Cliente.query.filter_by(nome="Lucas").first()
-    assert cliente1.nome == c1.nome
-
-def test_registro_pet(app):
-    c1 = Cliente.query.filter_by(nome="Lucas").first()
-    p1 = Pet(
+    cliente_controller.add_cliente(cliente)
+    pet = Pet(
         nome="Aylla",
         raca="Shihtzu",
         pelagem="Branca com marrom",
         obito=False,
-        dono_id = c1.id
     )
-    db.session.add(p1)
-    db.session.commit()
-    pet1 = Pet.query.filter_by(nome="Aylla").first()
-    assert pet1.nome == p1.nome and pet1.dono_id == c1.id
+    pet_controller.add_pet(pet, cliente)
+    pet_db = pet_controller.get_pet_by_nome("Aylla")
+    assert pet_db.nome == pet.nome and pet_db.dono_id == cliente.id
