@@ -42,3 +42,9 @@ def init_app(app):
     def fila():
         data = Model.read()
         return render_template("queue.html", data=data, title="Fila de Atendimentos")
+    
+    # @app.route("/novo-atendimento/<cliente_id>", methods=["GET", "POST"])
+    # def novo_atendimento(cliente_id=None):
+    #     if not cliente_id:
+    #         return redirect("/registro")
+

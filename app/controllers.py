@@ -25,4 +25,11 @@ class PetController():
         return pet
 
 class AtendimentoController():
-    pass
+    def add_atendimento(atendimento):
+        db.session.add(atendimento)
+        db.session.commit()
+
+    def add_servicos(atendimento, servicos):
+        for servico in servicos:
+            db.session.add()
+            pass

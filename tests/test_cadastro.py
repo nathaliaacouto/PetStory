@@ -1,5 +1,4 @@
 from app.models import Cliente, Pet
-from app import db
 from app.controllers import ClienteController, PetController
 
 def test_app_is_created(app):
