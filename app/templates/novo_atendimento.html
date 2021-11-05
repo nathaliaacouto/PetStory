@@ -29,8 +29,8 @@
 
                 <div id="servico-tipo">
                         <ul> Serviço:
-                                <li><input type="radio" name="servico">Banho</li>
-                                <li><input type="radio" name="servico">Tosa</li>
+                                <li><input type="checkbox" name="servico">Banho</li>
+                                <li><input type="checkbox" name="servico">Tosa</li>
                         </ul>
                 </div>
 
@@ -43,7 +43,7 @@
 
                 <div id="servico-raca">
                         <td>Raça: </td>
-                        <select name="raca" id="servico-raca">
+                        <select name="raca" id="raca">
                                 <option value="York">York</option>
                                 <option value="Golden">Golden</option>
                                 <option value="SRD">SRD</option>
@@ -51,49 +51,56 @@
                         </select>
                 </div>
 
+                <br>
+
                 <div id="servico-dono">
                         <td>Dono: </td>
                         <input type="text" name="nome_dono" size="40">
                 </div>
 
+                <br>
+
                 <div id="servico-obs">
-                        <td>Observações adicionais (Alergias, Deficiências, Tipo de tosa, outros): </td>
+                        <td>Observações adicionais (Alergias, Deficiências, Tipo de tosa, outros): </td><br>
                         <input type="text" name="nome_dono" size="80">
                 </div>
         </div>
 
-        <div class="gaiolas">
+        <div class="gaiolas-tudo">
                 <h3>Disponíveis: </h3>
-                <div id="gaiola">
-                        <p>Gaiola 1</p>
-                        <p>FUNCIONÁRIO</p>
-                        <input type="radio" name="gaiola">
-                </div>
-                <div id="gaiola">
-                        <p>Gaiola 2</p>
-                        <p>FUNCIONÁRIO</p>
-                        <input type="radio" name="gaiola">
-                </div>
-                <div id="gaiola">
-                        <p>Gaiola 3</p>
-                        <p>FUNCIONÁRIO</p>
-                        <input type="radio" name="gaiola">
-                </div>
-                <div id="gaiola">
-                        <p>Gaiola 4</p>
-                        <p>FUNCIONÁRIO</p>
-                        <input type="radio" name="gaiola">
-                </div>
-                <div id="gaiola">
-                        <p>Gaiola 5</p>
-                        <p>FUNCIONÁRIO</p>
-                        <input type="radio" name="gaiola">
-                </div>
-                <div id="gaiola">
-                        <p>Gaiola 6</p>
-                        <p>FUNCIONÁRIO</p>
-                        <input type="radio" name="gaiola">
+                <div class="gaiolas">
+                        <div id="gaiola">
+                                <p>Gaiola 1</p>
+                                <p>FUNCIONÁRIO</p>
+                                <input type="radio" name="gaiola">
+                        </div>
+                        <div id="gaiola">
+                                <p>Gaiola 2</p>
+                                <p>FUNCIONÁRIO</p>
+                                <input type="radio" name="gaiola">
+                        </div>
+                        <div id="gaiola">
+                                <p>Gaiola 3</p>
+                                <p>FUNCIONÁRIO</p>
+                                <input type="radio" name="gaiola">
+                        </div>
+                        <div id="gaiola">
+                                <p>Gaiola 4</p>
+                                <p>FUNCIONÁRIO</p>
+                                <input type="radio" name="gaiola">
+                        </div>
+                        <div id="gaiola">
+                                <p>Gaiola 5</p>
+                                <p>FUNCIONÁRIO</p>
+                                <input type="radio" name="gaiola">
+                        </div>
+                        <div id="gaiola">
+                                <p>Gaiola 6</p>
+                                <p>FUNCIONÁRIO</p>
+                                <input type="radio" name="gaiola">
+                        </div>
                 </div>
         </div>
+
   </body>
 </html>

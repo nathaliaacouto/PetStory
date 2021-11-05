@@ -1,7 +1,45 @@
+body {
+        margin-top: 10px;
+        text-align: center;
+        overflow: hidden;
+}
+
+#marcar-txt {
+        color: #00AEAC;
+}
+
 li {
         display: inline;
 }
 
+.servico {
+        overflow: hidden;
+        clear: both;
+        display: inline-block;
+}
+
+#servico-tipo{
+        float: left;
+}
+
+#servico-animal {
+        margin-right: 20px;
+        float: left;
+}
+
+
+#servico-obs {
+        margin: 20px;
+        margin-top: 10px;
+}
+
+.gaiolas {
+        margin-left: 20%;
+}
+
 #gaiola {
-        border: 2px black solid;
+        float: left;
+        margin: 10px;
+        padding: 3px;
+        border: 2px #00AEAC solid;
 }
