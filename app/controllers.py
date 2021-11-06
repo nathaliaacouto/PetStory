@@ -47,12 +47,21 @@ class PetController():
         return Pet.query.filter_by(nome=nome).first()
 
 class AtendimentoController():
+    def create_atendimento(self, status):
+        atendimento = Atendimento(
+            status=status,
+        )
+        return atendimento
+
     def add_atendimento(self, atendimento, pet, servicos):
         atendimento.pet_atendido = pet
         for servico in servicos:
             atendimento.servicos.append(servico)
         db.session.add(atendimento)
         db.session.commit()
+
+    def get_last_atendimento_by_id(self, pet_id):
+        return  Atendimento.query.filter_by(pet_id=pet_id).first()
     
     def get_atendimentos_by_cliente(self, cliente):
         cliente = Cliente.query.filter_by(id=cliente.id).first()
