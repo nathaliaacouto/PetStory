@@ -1,39 +1,27 @@
-from app.models import Pet, Atendimento, Servico
+from app.models import Pet, Atendimento
 from app.controllers import ClienteController, PetController, AtendimentoController, ServicoController
+from tests.helpers import cadastrar_cliente_pet
 
+    
 # funcionario acessa a pagina de novo atendimento
 def test_request_returns_200(client):
     assert client.get("/novo-atendimento").status_code == 200
 
 def test_servicos_are_created():
+    s_control = ServicoController()
     servicos = []
-    servicos.append(Servico.query.filter_by(descricao="Banho Shihtzu").first())
-    servicos.append(Servico.query.filter_by(descricao="Hidratacao").first())
+    servicos.append(s_control.get_servico_by_descricao("Banho Shihtzu"))
+    servicos.append(s_control.get_servico_by_descricao("Hidratacao"))
     assert servicos[0].valor == 30.00 and servicos[1].valor == 10.00
-
 
 # funcionario registra o atendimento de banho e hidratacao para um pet
 def test_registro_atendimento():
-    cliente_controller = ClienteController()
-    pet_controller = PetController()
     atendimento_controller = AtendimentoController()
     servico_controller = ServicoController()
-    cliente = cliente_controller.create_cliente({
-        "nome": "Lucas",
-        "telefone": "12345678",
-        "cpf": "14785236987",
-        "cep": "32147896", 
-        "endereco": "Rua Exemplo, 123",
-        "email": "lucas@gmail.com"
-    })
-    cliente_controller.add_cliente(cliente)
-    pet = Pet(
-        nome="Aylla",
-        raca="Shihtzu",
-        pelagem="Branca com marrom",
-        obito=False,
-    )
-    pet_controller.add_pet(pet, cliente)
+    cliente, pet = cadastrar_cliente_pet()
+
+    # funcionario cria um novo atendimento para o cliente, que solicita
+    # serviços de banho e hidratação para o seu pet 
     atendimento = Atendimento(
         status="Pendente",
     )

@@ -22,6 +22,15 @@ class ClienteController():
         return cliente1
 
 class PetController():
+    def create_pet(self, fields):
+        pet = Pet(
+            nome=fields['nome'],
+            raca=fields['raca'],
+            pelagem=fields['pelagem'],
+            obito=fields['obito']
+        )
+        return pet
+
     def add_pet(self, pet, cliente):
         pet.dono = cliente
         db.session.add(pet)
@@ -47,7 +56,6 @@ class AtendimentoController():
     
     def get_atendimentos_by_cliente(self, cliente):
         cliente = Cliente.query.filter_by(id=cliente.id).first()
-
         pass
 
     def get_atendimentos_by_status(self, status):
