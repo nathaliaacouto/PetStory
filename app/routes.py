@@ -36,7 +36,7 @@ def init_app(app):
             pet_controller.add_pet(pet, cliente)
             flash('Cadastro realizado com sucesso!')
             return redirect(url_for('registro'))
-        return render_template('registro.html', form=form, title="Novo Atendimento")
+        return render_template('registro.html', form=form, title="Registro")
     
     @app.route("/fila")
     def fila():

@@ -15,10 +15,16 @@ Criar e ativar uma virtualenv no diretório raiz da aplicação.
 python -m venv venv
 ```
 
-Ativar a virtualenv (Windows Powershell)
+No diretorio raiz da aplicação, ativar a virtualenv (Windows Powershell)
 ```shell
 .\venv\Scripts\Activate.ps1
 ```
+
+Para o Git bash/Terminais Unix
+```shell
+source ./venv/Scripts/activate
+```
+
 :warning: Se a execução de scripts estiver desabilitada na sua máquina, deverá executar um comando no Powershell para habilitá-los
 ```shell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
