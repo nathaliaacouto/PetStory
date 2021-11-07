@@ -1,4 +1,4 @@
-from app.models import Cliente, Pet
+from app.models import Cliente
 from app.controllers import ClienteController, PetController
 from tests.helpers import cadastrar_cliente_pet
 
@@ -10,14 +10,14 @@ def test_request_returns_200(client):
 
 def test_registro_cliente():
     cliente_controller = ClienteController()
-    cliente = Cliente(
-        nome="Alberto Silva",
-        telefone="12340987",
-        cpf="89874102147",
-        cep="32147452", 
-        endereco="Rua Exemplo, 854",
-        email="alberto@gmail.com"
-    )
+    cliente = cliente_controller.create_cliente({
+        "nome": "Alberto Silva",
+        "telefone": "12340987",
+        "cpf": "89874102147",
+        "cep": "32147452", 
+        "endereco": "Rua Exemplo, 854",
+        "email": "alberto@gmail.com"
+    })
     cliente_controller.add_cliente(cliente)
     cliente_db = cliente_controller.get_cliente_by_nome("Alberto Silva")
     assert cliente_db.nome == cliente.nome

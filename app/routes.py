@@ -29,7 +29,7 @@ def init_app(app):
             pet = Pet(
                 nome=form.dog.data,
                 raca=form.breed.data,
-                idade=form.age.data,
+                # idade=int(form.age.data),
                 pelagem=form.fur.data,
                 obito=False,
             )

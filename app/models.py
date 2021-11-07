@@ -15,6 +15,7 @@ class Cliente(db.Model):
         return '<Cliente {}>'.format(self.nome)
 
 class Pet(db.Model):
+    # !!! adicionar idade !!!
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), index=True)
     raca = db.Column(db.String(50))
@@ -31,6 +32,7 @@ atendimento_servico = db.Table('atendimento_servico',
     db.Column('servico_id', db.Integer, db.ForeignKey('servico.id'))
 )
 class Atendimento(db.Model):
+    # !!! adicionar obs !!!
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     status = db.Column(db.String, index=True)

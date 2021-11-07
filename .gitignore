@@ -28,3 +28,6 @@ htmlcov/
 
 # app db
 app.db
+
+# log files
+*.log

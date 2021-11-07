@@ -1,4 +1,7 @@
 import pytest
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 from app import create_app
 from app import db
 from config import Config
@@ -19,7 +22,7 @@ def create_servicos():
     db.session.commit()
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def app():
     """instancia do app"""
     app = create_app(TestConfig)
@@ -31,3 +34,10 @@ def app():
     db.session.remove()
     db.drop_all()
     c.pop()
+
+@pytest.fixture(scope="session")
+def browser():
+    service = Service(ChromeDriverManager().install())
+    browser = webdriver.Chrome(service=service)
+    yield browser
+    browser.close()
