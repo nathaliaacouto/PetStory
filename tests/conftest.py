@@ -22,7 +22,7 @@ def create_servicos():
     db.session.commit()
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def app():
     """instancia do app"""
     app = create_app(TestConfig)
@@ -35,7 +35,7 @@ def app():
     db.drop_all()
     c.pop()
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def browser():
     service = Service(ChromeDriverManager().install())
     browser = webdriver.Chrome(service=service)
