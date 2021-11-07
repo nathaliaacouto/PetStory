@@ -19,6 +19,7 @@ class Pet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), index=True)
     raca = db.Column(db.String(50))
+    idade = db.Column(db.Integer())
     pelagem = db.Column(db.String(50))
     obito = db.Column(db.Boolean, default=False)
     dono_id = db.Column(db.Integer, db.ForeignKey('cliente.id'))
@@ -32,11 +33,11 @@ atendimento_servico = db.Table('atendimento_servico',
     db.Column('servico_id', db.Integer, db.ForeignKey('servico.id'))
 )
 class Atendimento(db.Model):
-    # !!! adicionar obs !!!
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    status = db.Column(db.String, index=True)
+    status = db.Column(db.String(15), index=True)
     pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
+    obs = db.Column(db.String(200))
     servicos = db.relationship(
         'Servico',
         backref="atendimentos",
