@@ -1,5 +1,5 @@
 from flask import render_template, redirect, flash, url_for
-from app.forms import RegisterForm
+from app.forms import ClienteRegisterForm, PetRegisterForm
 from app.models import Cliente, Pet
 from app.model import Model
 from app.controllers import ClienteController, PetController
@@ -15,7 +15,11 @@ def init_app(app):
     
     @app.route("/registro", methods=["GET", "POST"])
     def registro():
-        form = RegisterForm()
+        form = ClienteRegisterForm()
+        if form.add_pet.data:
+            form.pets.append_entry()
+            return render_template('registro.html', form=form)
+
         if form.validate_on_submit():
             cliente = Cliente(
                 nome=form.owner.data,
@@ -26,14 +30,16 @@ def init_app(app):
                 email=form.email.data,
             )
             cliente_controller.add_cliente(cliente)
-            pet = Pet(
-                nome=form.dog.data,
-                raca=form.breed.data,
-                # idade=int(form.age.data),
-                pelagem=form.fur.data,
-                obito=False,
-            )
-            pet_controller.add_pet(pet, cliente)
+            for pet in form.pets:
+               if pet.dog.data:
+                    new = Pet(
+                        nome=pet.dog.data,
+                        raca=pet.breed.data,
+                        idade=pet.age.data,
+                        pelagem=pet.fur.data,
+                        obito=False,
+                    )
+                    pet_controller.add_pet(new, cliente)
             flash('Cadastro realizado com sucesso!')
             return redirect(url_for('registro'))
         return render_template('registro.html', form=form, title="Registro")
