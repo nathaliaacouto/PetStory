@@ -4,12 +4,12 @@ from app.models import Cliente, Pet, Servico, Atendimento
 class ClienteController():
     def create_cliente(self, fields):
         cliente = Cliente(
-            nome=fields['nome'],
-            telefone=fields['telefone'],
-            cpf=fields['cpf'],
-            cep=fields['cep'],
-            endereco=fields['endereco'],
-            email=fields['email']
+            nome=fields.get('nome', None),
+            telefone=fields.get('telefone', None),
+            cpf=fields.get('cpf', None),
+            cep=fields.get('cep', None),
+            endereco=fields.get('endereco', None),
+            email=fields.get('email', None)
         )
         return cliente
 
@@ -24,11 +24,11 @@ class ClienteController():
 class PetController():
     def create_pet(self, fields):
         pet = Pet(
-            nome=fields['nome'],
-            raca=fields['raca'],
-            idade=fields['idade'],
-            pelagem=fields['pelagem'],
-            obito=fields['obito']
+            nome=fields.get('nome', None),
+            raca=fields.get('raca', None),
+            idade=fields.get('idade', None),
+            pelagem=fields.get('pelagem', None),
+            obito=fields.get('obito', None)
         )
         return pet
 
