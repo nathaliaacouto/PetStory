@@ -16,6 +16,7 @@ def cadastrar_cliente_pet():
     pet = pet_controller.create_pet({
         "nome": "Aylla",
         "raca": "Shihtzu",
+        "idade": 2,
         "pelagem": "Branca com marrom",
         "obito": False,
     })

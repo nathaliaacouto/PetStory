@@ -15,7 +15,6 @@ class Cliente(db.Model):
         return '<Cliente {}>'.format(self.nome)
 
 class Pet(db.Model):
-    # !!! adicionar idade !!!
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), index=True)
     raca = db.Column(db.String(50))

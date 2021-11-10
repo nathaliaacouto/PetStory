@@ -26,6 +26,7 @@ class PetController():
         pet = Pet(
             nome=fields['nome'],
             raca=fields['raca'],
+            idade=fields['idade'],
             pelagem=fields['pelagem'],
             obito=fields['obito']
         )
