@@ -31,11 +31,13 @@ atendimento_servico = db.Table('atendimento_servico',
     db.Column('atendimento_id', db.Integer, db.ForeignKey('atendimento.id')),
     db.Column('servico_id', db.Integer, db.ForeignKey('servico.id'))
 )
+
 class Atendimento(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     status = db.Column(db.String(15), index=True)
     pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
+    codigo_func = db.Column(db.Integer, index=True)
     obs = db.Column(db.String(200))
     servicos = db.relationship(
         'Servico',
@@ -54,3 +56,14 @@ class Servico(db.Model):
 
     def __repr__(self):
         return '<Servico {} | R${}>'.format(self.descricao, self.valor)
+
+class Funcionario(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(64))
+    email = db.Column(db.String(100), unique=True)
+    senha_hash = db.Column(db.String(256))
+    codigo = db.Column(db.Integer, unique=True)
+    cargo = db.Column(db.String(20), index=True)
+    
+    def __repr__(self):
+        return '<Funcionario {} | codigo {}'.format(self.nome, self.codigo)
