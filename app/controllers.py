@@ -1,5 +1,5 @@
 from app import db
-from app.models import Cliente, Pet, Servico, Atendimento
+from app.models import Cliente, Pet, Servico, Atendimento, Funcionario
 
 class ClienteController():
     def create_cliente(self, fields):
@@ -54,8 +54,9 @@ class AtendimentoController():
         )
         return atendimento
 
-    def add_atendimento(self, atendimento, pet, servicos):
+    def add_atendimento(self, atendimento, pet, servicos, funcionario):
         atendimento.pet_atendido = pet
+        atendimento.codigo_func = funcionario.codigo
         for servico in servicos:
             atendimento.servicos.append(servico)
         db.session.add(atendimento)
@@ -80,3 +81,14 @@ class ServicoController():
     
     def get_servico_by_valor(self, value):
         return Servico.query.filter_by(valor=value).first()
+
+class FuncionarioController():
+    def create_funcionario(self, fields):
+        funcionario = Funcionario(
+            nome=fields.get('nome', None),
+            email=fields.get('email', None),
+            senha_hash=fields.get('senha_hash', None),
+            codigo=fields.get('codigo', None),
+            cargo=fields.get('cargo', None)
+        )
+        return funcionario
