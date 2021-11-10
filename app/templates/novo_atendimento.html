@@ -1,106 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %} 
+{% block head %}
+    <link rel="stylesheet" href="/static/css/novo_atendimento.css">
+{% endblock %}
+{% block content %}
+<div class="nav-bar">
+        <ul>
+                <li><a href=""><img src="" alt="imagem"></a></li>
+                <li><a href="">Serviços</a></li>
+                <li><a href="">Marcação</a></li>
+                <li><a href="">Cadastrar</a></li>
+                <li><a href="">Histórico</a></li>
+        </ul>
+</div>
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PetStory</title>
-    <link rel="icon" href="./logo-petstory.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="novo_atendimento.css">
-  </head>
+<div class="servico">
+        <div id="marcar-txt">
+                <h1>Marcar Serviço</h1>
+        </div>
 
-  <body>
-        <div class="nav-bar">
-                <ul>
-                        <li><a href=""><img src="" alt="imagem"></a></li>
-                        <li><a href="">Serviços</a></li>
-                        <li><a href="">Marcação</a></li>
-                        <li><a href="">Cadastrar</a></li>
-                        <li><a href="">Histórico</a></li>
+        <div id="servico-tipo">
+                <ul> Serviço:
+                        <li><input type="checkbox" name="servico">Banho</li>
+                        <li><input type="checkbox" name="servico">Tosa</li>
                 </ul>
         </div>
 
-        <div class="servico">
-                <div id="marcar-txt">
-                        <h1>Marcar Serviço</h1>
-                </div>
-
-                <div id="servico-tipo">
-                        <ul> Serviço:
-                                <li><input type="checkbox" name="servico">Banho</li>
-                                <li><input type="checkbox" name="servico">Tosa</li>
-                        </ul>
-                </div>
-
-                <div id="servico-animal">
-                        <ul> Animal: 
-                                <li><input type="radio" name="animal">Cachorro</li>
-                                <li><input type="radio" name="animal">Gato</li>
-                        </ul>
-                </div>
-
-                <div id="servico-raca">
-                        <td>Raça: </td>
-                        <select name="raca" id="raca">
-                                <option value="York">York</option>
-                                <option value="Golden">Golden</option>
-                                <option value="SRD">SRD</option>
-                                <option value="Persa">Persa</option>
-                        </select>
-                </div>
-
-                <br>
-
-                <div id="servico-dono">
-                        <td>Dono: </td>
-                        <input type="text" name="nome_dono" size="40">
-                </div>
-
-                <br>
-
-                <div id="servico-obs">
-                        <td>Observações adicionais (Alergias, Deficiências, Tipo de tosa, outros): </td><br>
-                        <input type="text" name="nome_dono" size="80">
-                </div>
+        <div id="servico-animal">
+                <ul> Animal: 
+                        <li><input type="radio" name="animal">Cachorro</li>
+                        <li><input type="radio" name="animal">Gato</li>
+                </ul>
         </div>
 
-        <div class="gaiolas-tudo">
-                <h3>Disponíveis: </h3>
-                <div class="gaiolas">
-                        <div id="gaiola">
-                                <p>Gaiola 1</p>
-                                <p>FUNCIONÁRIO</p>
-                                <input type="radio" name="gaiola">
-                        </div>
-                        <div id="gaiola">
-                                <p>Gaiola 2</p>
-                                <p>FUNCIONÁRIO</p>
-                                <input type="radio" name="gaiola">
-                        </div>
-                        <div id="gaiola">
-                                <p>Gaiola 3</p>
-                                <p>FUNCIONÁRIO</p>
-                                <input type="radio" name="gaiola">
-                        </div>
-                        <div id="gaiola">
-                                <p>Gaiola 4</p>
-                                <p>FUNCIONÁRIO</p>
-                                <input type="radio" name="gaiola">
-                        </div>
-                        <div id="gaiola">
-                                <p>Gaiola 5</p>
-                                <p>FUNCIONÁRIO</p>
-                                <input type="radio" name="gaiola">
-                        </div>
-                        <div id="gaiola">
-                                <p>Gaiola 6</p>
-                                <p>FUNCIONÁRIO</p>
-                                <input type="radio" name="gaiola">
-                        </div>
-                </div>
+        <div id="servico-raca">
+                <td>Raça: </td>
+                <select name="raca" id="raca">
+                        <option value="York">York</option>
+                        <option value="Golden">Golden</option>
+                        <option value="SRD">SRD</option>
+                        <option value="Persa">Persa</option>
+                </select>
         </div>
 
-  </body>
-</html>
+        <br>
+
+        <div id="servico-dono">
+                <td>Dono: </td>
+                <input type="text" name="nome_dono" size="40">
+        </div>
+
+        <br>
+
+        <div id="servico-obs">
+                <td>Observações adicionais (Alergias, Deficiências, Tipo de tosa, outros): </td><br>
+                <input type="text" name="nome_dono" size="80">
+        </div>
+</div>
+
+<div class="gaiolas-tudo">
+        <h3>Disponíveis: </h3>
+        <div class="gaiolas">
+                <div id="gaiola">
+                        <p>Gaiola 1</p>
+                        <p>FUNCIONÁRIO</p>
+                        <input type="radio" name="gaiola">
+                </div>
+                <div id="gaiola">
+                        <p>Gaiola 2</p>
+                        <p>FUNCIONÁRIO</p>
+                        <input type="radio" name="gaiola">
+                </div>
+                <div id="gaiola">
+                        <p>Gaiola 3</p>
+                        <p>FUNCIONÁRIO</p>
+                        <input type="radio" name="gaiola">
+                </div>
+                <div id="gaiola">
+                        <p>Gaiola 4</p>
+                        <p>FUNCIONÁRIO</p>
+                        <input type="radio" name="gaiola">
+                </div>
+                <div id="gaiola">
+                        <p>Gaiola 5</p>
+                        <p>FUNCIONÁRIO</p>
+                        <input type="radio" name="gaiola">
+                </div>
+                <div id="gaiola">
+                        <p>Gaiola 6</p>
+                        <p>FUNCIONÁRIO</p>
+                        <input type="radio" name="gaiola">
+                </div>
+        </div>
+</div>
+{% endblock %}

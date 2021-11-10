@@ -1,11 +1,10 @@
-from app.models import Cliente
 from app.controllers import ClienteController, PetController
 from tests.helpers import cadastrar_cliente_pet
 
 def test_app_is_created(app):
     assert app.name == 'app'  
 
-def test_request_returns_200(client):
+def test_request_returns_200_on_registro(client):
     assert client.get("/registro").status_code == 200
 
 def test_registro_cliente():

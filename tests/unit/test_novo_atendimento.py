@@ -1,16 +1,15 @@
 from app.controllers import AtendimentoController, ClienteController, ServicoController, FuncionarioController
 from tests.helpers import cadastrar_cliente_pet
 
+def test_request_returns_200_on_novo_atendimento(client):
+    assert client.get('/novo-atendimento').status_code == 200
+
 def test_servicos_are_created(app):
     s_control = ServicoController()
     servicos = []
     servicos.append(s_control.get_servico_by_descricao("Banho Shihtzu"))
     servicos.append(s_control.get_servico_by_descricao("Hidratacao"))
     assert servicos[0].valor == 30.00 and servicos[1].valor == 10.00
-
-# funcionario acessa a pagina de novo atendimento
-def test_request_returns_200(client):
-    assert client.get("/novo-atendimento").status_code == 200
 
 # funcionario registra o atendimento de banho e hidratacao para um pet
 def test_registro_atendimento():

@@ -51,5 +51,5 @@ def init_app(app):
     
     @app.route("/novo-atendimento", methods=["GET", "POST"])
     def novo_atendimento():
-        return '<h1>Novo Atendimento</h1>'
+        return render_template("novo_atendimento.html")
 
