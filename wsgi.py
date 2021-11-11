@@ -1,5 +1,5 @@
 from app import create_app, db
-from app.models import Cliente, Pet, Atendimento, Servico, atendimento_servico
+from app.models import Cliente, Pet, Atendimento, Servico, atendimento_servico, Funcionario
 
 app = create_app()
 
@@ -11,5 +11,6 @@ def make_shell_context():
         'Pet': Pet,
         'Atendimento': Atendimento,
         'Servico': Servico,
-        'atendimento_servico': atendimento_servico
+        'atendimento_servico': atendimento_servico,
+        'Funcionario': Funcionario
     }

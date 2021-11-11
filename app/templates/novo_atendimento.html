@@ -14,47 +14,63 @@
 </div>
 
 <div class="servico">
-        <div id="marcar-txt">
-                <h1>Marcar Serviço</h1>
-        </div>
+    <div class="mb-5" id="marcar-txt">
+        <h1>Marcar Serviço</h1>
+    </div>
+    <div class="container">
+        <form action='' method='post' novalidate>
+            <!-- <div class="backdrop">
+                <div class="cliente-modal">
+                </div>
+            </div> -->
+            <div class="mb-5">
+                {{ form.search_box.label() }}
+                {{ form.search_box()}}
+                {{ form.search(class="btn btn-success")}}
+            </div>
+            <div class="mb-5">
+                {% for user in form.user_data %}
+                    {{ user.nome }}
+                    {{ user.phone }}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</div>
+<div id="servico-tipo">
+        <ul> Serviço:
+                <li><input type="checkbox" name="servico">Banho</li>
+                <li><input type="checkbox" name="servico">Tosa</li>
+        </ul>
+</div>
 
-        <div id="servico-tipo">
-                <ul> Serviço:
-                        <li><input type="checkbox" name="servico">Banho</li>
-                        <li><input type="checkbox" name="servico">Tosa</li>
-                </ul>
-        </div>
+<div id="servico-animal">
+        <ul> Animal: 
+                <li><input type="radio" name="animal">Cachorro</li>
+                <li><input type="radio" name="animal">Gato</li>
+        </ul>
+</div>
 
-        <div id="servico-animal">
-                <ul> Animal: 
-                        <li><input type="radio" name="animal">Cachorro</li>
-                        <li><input type="radio" name="animal">Gato</li>
-                </ul>
-        </div>
+<div id="servico-raca">
+        <td>Raça: </td>
+        <select name="raca" id="raca">
+                <option value="York">York</option>
+                <option value="Golden">Golden</option>
+                <option value="SRD">SRD</option>
+                <option value="Persa">Persa</option>
+        </select>
+</div>
 
-        <div id="servico-raca">
-                <td>Raça: </td>
-                <select name="raca" id="raca">
-                        <option value="York">York</option>
-                        <option value="Golden">Golden</option>
-                        <option value="SRD">SRD</option>
-                        <option value="Persa">Persa</option>
-                </select>
-        </div>
+<div id="servico-dono">
+        <td>Dono: </td>
+        <input type="text" name="nome_dono" size="40">
+</div>
 
-        <br>
+<br>
 
-        <div id="servico-dono">
-                <td>Dono: </td>
-                <input type="text" name="nome_dono" size="40">
-        </div>
-
-        <br>
-
-        <div id="servico-obs">
-                <td>Observações adicionais (Alergias, Deficiências, Tipo de tosa, outros): </td><br>
-                <input type="text" name="nome_dono" size="80">
-        </div>
+<div id="servico-obs">
+        <td>Observações adicionais (Alergias, Deficiências, Tipo de tosa, outros): </td><br>
+        <input type="text" name="nome_dono" size="80">
 </div>
 
 <div class="gaiolas-tudo">
