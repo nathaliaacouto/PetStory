@@ -24,8 +24,8 @@ class ClienteRegisterForm(FlaskForm):
 class ClienteHelperForm(FlaskForm):
     class Meta:
         csrf = False
-    nome = StringField()
-    phone = StringField()
+    nome = StringField('Cliente')
+    telefone = StringField('Telefone')
 
 class PetHelperForm(FlaskForm):
     class Meta:
@@ -36,7 +36,7 @@ class PetHelperForm(FlaskForm):
     age = IntegerField()
 
 class BuscaClienteForm(FlaskForm): 
-    search_box = StringField('Telefone do Cliente')
+    search_box = IntegerField('Telefone do Cliente')
     user_data = FieldList(FormField(ClienteHelperForm), min_entries=0, max_entries=1)
     pet_data = FieldList(FormField(PetHelperForm), min_entries=0, max_entries=1)
     search = SubmitField('Buscar')

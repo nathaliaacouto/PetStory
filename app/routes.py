@@ -58,7 +58,11 @@ def init_app(app):
         form = BuscaClienteForm()
         if form.search.data:
             if not form.user_data.entries:
-                form.user_data.append_entry()
-                return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
+                cliente = cliente_controller.get_cliente_by_telefone(form.search_box.data)
+                if cliente:
+                    form.user_data.append_entry(data=cliente)
+                    form.pet_data.append_entry()
+                    return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
+                flash('Cliente não encontrado')
         return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
 

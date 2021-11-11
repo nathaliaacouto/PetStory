@@ -18,8 +18,10 @@ class ClienteController():
         db.session.commit()
 
     def get_cliente_by_nome(self, nome):
-        cliente1 = Cliente.query.filter_by(nome=nome).first()
-        return cliente1
+        return Cliente.query.filter_by(nome=nome).first()
+    
+    def get_cliente_by_telefone(self, telefone):
+        return Cliente.query.filter_by(telefone=telefone).first()
 
 class PetController():
     def create_pet(self, fields):

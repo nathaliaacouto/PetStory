@@ -13,29 +13,46 @@
         </ul>
 </div>
 
-<div class="servico">
-    <div class="mb-5" id="marcar-txt">
-        <h1>Marcar Serviço</h1>
-    </div>
-    <div class="container">
-        <form action='' method='post' novalidate>
-            <!-- <div class="backdrop">
-                <div class="cliente-modal">
+<div class="container">
+    <h1 class="marcar-txt mb-5">Marcar Serviço</h1>
+    {% with messages = get_flashed_messages() %}
+        <div class="messages">
+            <ul class="alert-list" role="alert">
+            {% for message in messages %}
+                <li class="alert alert-danger">{{ message }}</li>
+            {% endfor %}    
+            </ul>
+        </div>
+    {% endwith %}
+    <form action='' method='post' novalidate>
+        <!-- <div class="backdrop">
+            <div class="cliente-modal">
+            </div>
+        </div> -->
+        <div class="mb-5">
+            {{ form.search_box.label() }}
+            {{ form.search_box()}}
+            {{ form.search(class="btn btn-success")}}
+        </div>
+        <div class="row mb-5">
+            {% for user in form.user_data %}
+                <div class="col-lg-4">
+                    {{ user.nome.label(class="form-label") }}
+                    {{ user.nome(class="form-control", disabled=True) }}
                 </div>
-            </div> -->
-            <div class="mb-5">
-                {{ form.search_box.label() }}
-                {{ form.search_box()}}
-                {{ form.search(class="btn btn-success")}}
-            </div>
-            <div class="mb-5">
-                {% for user in form.user_data %}
-                    {{ user.nome }}
-                    {{ user.phone }}
-                {% endfor %}
-            </div>
-        </form>
-    </div>
+                <div class="col-lg-4">
+                    {{ user.telefone.label(class="form-label")}}
+                    {{ user.telefone(class="form-control", disabled=True) }}
+                </div>
+            {% endfor %}
+            {% for pet in form.pet_data %}
+                <div class="col-lg-4">
+                    {{ pet.dog}}
+                    {{ pet.breed }}
+                </div>
+            {% endfor %}
+        </div>
+    </form>
 </div>
 <div id="servico-tipo">
         <ul> Serviço:
