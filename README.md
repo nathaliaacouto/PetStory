@@ -22,7 +22,7 @@ No diretorio raiz da aplicação, ativar a virtualenv (Windows Powershell)
 
 Para o Git bash/Terminais Unix
 ```shell
-source ./venv/Scripts/activate
+source ./venv/bin/activate
 ```
 
 :warning: Se a execução de scripts estiver desabilitada na sua máquina, deverá executar um comando no Powershell para habilitá-los
@@ -32,6 +32,20 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 Instalar todas as dependências do projeto com o pip
 ```shell
 pip install -r requirements.txt
+```
+
+## Como iniciar o servidor local
+Caso for a primeira vez iniciando o servidor local para o projeto, siga os seguintes passos:
+```shell
+(venv) flask shell
+>>> db
+>>> db.create_all()
+>>> exit()
+```
+
+Prossiga com a inicialização do servidor local com o seguinte comando:
+```shell
+(venv) flask run
 ```
 
 <h3>Página dos integrantes no github</h3>
