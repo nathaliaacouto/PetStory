@@ -1,0 +1,37 @@
+body {
+        background-color: #00AEAC;
+}
+
+.container {
+        background-color: rgba(255, 255, 255, 0.473);
+        margin-top: 10%;
+        width: 30%;
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+}
+
+.input-txt {
+        width: 60%;
+        border-radius: 8px;
+        border: none;
+        background-color: rgb(231, 231, 231);
+        padding: 5px;
+        outline: none;
+}
+
+button {
+        width: 50%;
+        padding: 3px;
+        border-radius: 5px;
+        border: 1px solid #00AEAC;
+        background-color: #FFBC01;
+        margin-bottom: 3px;
+}
+
+button:hover {
+        background-color: #00AEAC;
+}
+
+
+
