@@ -4,13 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/static/img/logo-petstory.png" />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/menu.css">
+
+    <link rel="icon" href="/static/img/logo-petstory.png" />
+    
     {% block head %}{% endblock %}
     {% if title %}
     <title>PetStory | {{ title }}</title>
@@ -19,6 +28,33 @@
     {% endif %}
   </head>
   <body>
+    {% block menu %}
+    <div class="menu-bg">
+      <div class="menu">
+        <div class="menu-logo ordX">
+          <img src="/static/img/logo.svg" alt="">
+        </div>
+
+        <div class="menu-nav ordY">
+          <ul>
+            <li><a href="">Serviços</a></li>
+            <li><a href="">Cadastro</a></li>
+            <li><a href="">Clientes</a></li>
+            <li><a href="">Notificações</a></li>
+          </ul>
+        </div>
+
+        <div class="menu-employee ordZ">
+          <img src="/static/img/employee.svg" alt="">
+          <div class="menu-employee-info">
+            <p>Bem- vindo(a),</p>
+            <h3>Funcionário X</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
     {% block content %}{% endblock %}
   </body>
 </html>
