@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, IntegerField, FormField, FieldList
+from wtforms import StringField, SubmitField, IntegerField, FormField, FieldList, SelectField
 from wtforms.validators import DataRequired
+from markupsafe import Markup
 
 class PetRegisterForm(FlaskForm):
     class Meta:
@@ -30,15 +31,11 @@ class ClienteHelperForm(FlaskForm):
 class PetHelperForm(FlaskForm):
     class Meta:
         csrf = False
-    dog = StringField()
-    breed = StringField()
-    fur = StringField()
-    age = IntegerField()
+    dog = SelectField('Pet', coerce=int, choices=[(1, 'Um'), (2, 'Dois')])
 
 class BuscaClienteForm(FlaskForm): 
     search_box = IntegerField('Telefone do Cliente')
     user_data = FieldList(FormField(ClienteHelperForm), min_entries=0, max_entries=1)
     pet_data = FieldList(FormField(PetHelperForm), min_entries=0, max_entries=1)
     search = SubmitField('Buscar')
-    choose = SubmitField('Escolher pet')
     submit = SubmitField('Registrar Atendimento')

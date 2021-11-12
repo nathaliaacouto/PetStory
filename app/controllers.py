@@ -22,6 +22,9 @@ class ClienteController():
     
     def get_cliente_by_telefone(self, telefone):
         return Cliente.query.filter_by(telefone=telefone).first()
+    
+    def get_cliente_by_id(self, id):
+        return Cliente.query.filter_by(id=id).first()
 
 class PetController():
     def create_pet(self, fields):
@@ -40,7 +43,7 @@ class PetController():
         db.session.commit()
     
     # cliente -> string
-    def list_pet_from_cliente(self, cliente):
+    def list_pets_from_cliente(self, cliente):
         controller = ClienteController()
         cliente_data = controller.get_cliente_by_nome(cliente)
         pets = Pet.query.filter_by(dono_id=cliente_data.id).all()

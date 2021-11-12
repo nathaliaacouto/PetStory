@@ -14,6 +14,11 @@
 </div>
 
 <div class="container">
+    {% for error in form.errors %}
+        <div class="alert alert-error">
+            {{ error }}
+        </div>
+    {% endfor %}
     <h1 class="marcar-txt mb-5">Marcar Serviço</h1>
     {% with messages = get_flashed_messages() %}
         <div class="messages">
@@ -25,6 +30,7 @@
         </div>
     {% endwith %}
     <form action='' method='post' novalidate>
+        {{ form.hidden_tag() }}
         <!-- <div class="backdrop">
             <div class="cliente-modal">
             </div>
@@ -37,21 +43,22 @@
         <div class="row mb-5">
             {% for user in form.user_data %}
                 <div class="col-lg-4">
-                    {{ user.nome.label(class="form-label") }}
+                    {{ user.nome.label(class="form-label start-label") }}
                     {{ user.nome(class="form-control", disabled=True) }}
                 </div>
                 <div class="col-lg-4">
-                    {{ user.telefone.label(class="form-label")}}
+                    {{ user.telefone.label(class="form-label start-label")}}
                     {{ user.telefone(class="form-control", disabled=True) }}
                 </div>
             {% endfor %}
             {% for pet in form.pet_data %}
                 <div class="col-lg-4">
-                    {{ pet.dog}}
-                    {{ pet.breed }}
+                    {{ pet.dog.label() }}
+                    {{ pet.dog(class="form-select pet-select")}}
                 </div>
             {% endfor %}
         </div>
+        {{ form.submit(class="btn btn-success")}}
     </form>
 </div>
 <div id="servico-tipo">

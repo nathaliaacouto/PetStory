@@ -60,9 +60,19 @@ def init_app(app):
             if not form.user_data.entries:
                 cliente = cliente_controller.get_cliente_by_telefone(form.search_box.data)
                 if cliente:
+                    pets = pet_controller.list_pets_from_cliente(cliente.nome)
+                    pet_options = [(p.id, p.nome) for p in pets]
+                    print(pet_options)
                     form.user_data.append_entry(data=cliente)
                     form.pet_data.append_entry()
+                    form.pet_data.entries[0].dog.choices = pet_options
                     return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
                 flash('Cliente não encontrado')
+        
+        if form.validate_on_submit():
+            for pet in form.pet_data:
+                print(type(pet.dog.data))
+            flash("atendimento marcado")
+            return redirect(url_for('novo_atendimento'))
+        print(form.errors)
         return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
-

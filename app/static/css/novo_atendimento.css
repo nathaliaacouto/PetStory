@@ -8,6 +8,14 @@ body {
         color: #00AEAC;
 }
 
+.pet-select {
+        width: 50%;
+}
+
+.start-label {
+        text-align: start;
+}
+
 li {
         display: inline;
 }
