@@ -3,13 +3,13 @@
     <link rel="stylesheet" href="/static/css/novo_atendimento.css">
 {% endblock %}
 {% block content %}
-<div class="container">
+<div class="container-lg">
     {% for error in form.errors %}
         <div class="alert alert-error">
             {{ error }}
         </div>
     {% endfor %}
-    <h1 class="marcar-txt mb-5">Marcar Serviço</h1>
+    <h1 class="marcar-txt mb-5">Serviços</h1>
     {% with messages = get_flashed_messages() %}
         <div class="messages">
             <ul class="alert-list" role="alert">
@@ -19,46 +19,61 @@
             </ul>
         </div>
     {% endwith %}
-    <form action='' method='post' novalidate>
-        {{ form.hidden_tag() }}
-        <!-- <div class="backdrop">
-            <div class="cliente-modal">
-            </div>
-        </div> -->
-        <div class="mb-5">
-            {{ form.search_box.label() }}
-            {{ form.search_box()}}
-            {{ form.search(class="btn btn-success")}}
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <form action='' method='post' novalidate>
+                {{ form.hidden_tag() }}
+                <!-- <div class="backdrop">
+                    <div class="cliente-modal">
+                    </div>
+                </div> -->
+                <div class="mb-5">
+                    {{ form.search_box.label() }}
+                    {{ form.search_box()}}
+                    {{ form.search(class="btn btn-success")}}
+                </div>
+                <div class="row mb-5">
+                    {% for user in form.user_data %}
+                        <div class="col-lg-4">
+                            {{ user.nome.label(class="form-label start-label") }}
+                            {{ user.nome(class="form-control", disabled=True) }}
+                        </div>
+                        <div class="col-lg-4">
+                            {{ user.telefone.label(class="form-label start-label")}}
+                            {{ user.telefone(class="form-control", disabled=True) }}
+                        </div>
+                    {% endfor %}
+                    {% for pet in form.pet_data %}
+                        <div class="col-lg-4">
+                            {{ pet.dog.label() }}
+                            {{ pet.dog(class="form-select pet-select")}}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row mb-5">
+                    {% for s in form.servicos_data %}
+                        <div class="col-lg-4">
+                            {{ s.servico.label() }}
+                            {{ s.servico(class="form-select")}}
+                        </div>
+                    {% endfor %}
+                </div>
+                {{ form.submit(class="btn btn-success")}}
+            </form>
         </div>
-        <div class="row mb-5">
-            {% for user in form.user_data %}
-                <div class="col-lg-4">
-                    {{ user.nome.label(class="form-label start-label") }}
-                    {{ user.nome(class="form-control", disabled=True) }}
-                </div>
-                <div class="col-lg-4">
-                    {{ user.telefone.label(class="form-label start-label")}}
-                    {{ user.telefone(class="form-control", disabled=True) }}
-                </div>
-            {% endfor %}
-            {% for pet in form.pet_data %}
-                <div class="col-lg-4">
-                    {{ pet.dog.label() }}
-                    {{ pet.dog(class="form-select pet-select")}}
-                </div>
-            {% endfor %}
+        <div class="col-lg-6 col-md-12">
+            Coluna de servicos
         </div>
-        {{ form.submit(class="btn btn-success")}}
-    </form>
+    </div>
 </div>
-<div id="servico-tipo">
+{% endblock %}
+<!-- <div id="servico-tipo">
         <ul> Serviço:
                 <li><input type="checkbox" name="servico">Banho</li>
                 <li><input type="checkbox" name="servico">Tosa</li>
         </ul>
-</div>
-
-<div id="servico-animal">
+</div> -->
+<!-- <div id="servico-animal">
         <ul> Animal: 
                 <li><input type="radio" name="animal">Cachorro</li>
                 <li><input type="radio" name="animal">Gato</li>
@@ -121,5 +136,4 @@
                         <input type="radio" name="gaiola">
                 </div>
         </div>
-</div>
-{% endblock %}
+</div> -->

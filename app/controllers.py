@@ -86,6 +86,9 @@ class ServicoController():
     
     def get_servico_by_valor(self, value):
         return Servico.query.filter_by(valor=value).first()
+    
+    def get_all(self):
+        return Servico.query.all()
 
 class FuncionarioController():
     def create_funcionario(self, fields):

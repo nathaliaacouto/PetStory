@@ -9,7 +9,7 @@ endereco = "Rua Que Nao Existe, 546"
 email = "marcos@silva.com"
 
 nome_pet = "Toto"
-raca = "SRD"
+raca = "Pug"
 idade = "8"
 pelagem = "caramelo"
 nome_pet2 = "Mel"

@@ -55,7 +55,7 @@ class Servico(db.Model):
     valor = db.Column(db.Float(precision=2))
 
     def __repr__(self):
-        return '<Servico {} | R${}>'.format(self.descricao, self.valor)
+        return self.descricao
 
 class Funcionario(db.Model):
     id = db.Column(db.Integer, primary_key=True)

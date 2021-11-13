@@ -1,11 +1,12 @@
 from flask import render_template, redirect, flash, url_for
 from app.forms import ClienteRegisterForm, BuscaClienteForm
 from app.models import Cliente, Pet
-from app.controllers import ClienteController, PetController
+from app.controllers import ClienteController, PetController, ServicoController
 
 def init_app(app):
     cliente_controller = ClienteController()
     pet_controller = PetController()
+    servico_controller = ServicoController()
 
     @app.route("/")
     @app.route("/login")
@@ -56,22 +57,31 @@ def init_app(app):
     @app.route("/novo-atendimento", methods=["GET", "POST"])
     def novo_atendimento():
         form = BuscaClienteForm()
+
         if form.search.data:
             if not form.user_data.entries:
                 cliente = cliente_controller.get_cliente_by_telefone(form.search_box.data)
                 if cliente:
+                    MAX_ENTRIES = 3
                     pets = pet_controller.list_pets_from_cliente(cliente.nome)
                     pet_options = [(p.id, p.nome) for p in pets]
-                    print(pet_options)
                     form.user_data.append_entry(data=cliente)
                     form.pet_data.append_entry()
                     form.pet_data.entries[0].dog.choices = pet_options
+                    servicos = servico_controller.get_all()
+                    servicos_options = [(0 , "---")]
+                    servicos_options += [(s.id, s.descricao) for s in servicos]
+                    for i in range(MAX_ENTRIES):
+                        form.servicos_data.append_entry()
+                        form.servicos_data.entries[i].servico.choices = servicos_options
                     return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
                 flash('Cliente não encontrado')
         
-        if form.validate_on_submit():
+        if form.is_submitted():
             for pet in form.pet_data:
                 print(type(pet.dog.data))
+            for s in form.servicos_data:
+                print(type(s.servico.data))
             flash("atendimento marcado")
             return redirect(url_for('novo_atendimento'))
         print(form.errors)
