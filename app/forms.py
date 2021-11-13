@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField, FormField, FieldList, SelectField
 from wtforms.validators import DataRequired
-from markupsafe import Markup
 
 class PetRegisterForm(FlaskForm):
     class Meta:

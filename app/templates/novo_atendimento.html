@@ -3,16 +3,6 @@
     <link rel="stylesheet" href="/static/css/novo_atendimento.css">
 {% endblock %}
 {% block content %}
-<div class="nav-bar">
-        <ul>
-                <li><a href=""><img src="" alt="imagem"></a></li>
-                <li><a href="">Serviços</a></li>
-                <li><a href="">Marcação</a></li>
-                <li><a href="">Cadastrar</a></li>
-                <li><a href="">Histórico</a></li>
-        </ul>
-</div>
-
 <div class="container">
     {% for error in form.errors %}
         <div class="alert alert-error">
