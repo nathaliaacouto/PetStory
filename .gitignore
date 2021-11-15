@@ -30,3 +30,7 @@ app.db
 
 # log files
 *.log
+
+# C code related files
+*.out
+nfe.txt
