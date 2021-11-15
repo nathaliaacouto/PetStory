@@ -25,7 +25,7 @@ class ClienteController():
     
     def get_cliente_by_id(self, id):
         return Cliente.query.filter_by(id=id).first()
-
+    
 class PetController():
     def create_pet(self, fields):
         pet = Pet(
@@ -51,6 +51,9 @@ class PetController():
 
     def get_pet_by_nome(self, nome):
         return Pet.query.filter_by(nome=nome).first()
+    
+    def get_pet_by_id(self, id):
+        return Pet.query.filter_by(id=id).first()
 
 class AtendimentoController():
     def create_atendimento(self, status):
@@ -59,13 +62,21 @@ class AtendimentoController():
         )
         return atendimento
 
-    def add_atendimento(self, atendimento, pet, servicos, funcionario):
+    def add_atendimento(self, atendimento, pet, servicos, obs=None):
         atendimento.pet_atendido = pet
-        atendimento.codigo_func = funcionario.codigo
+        if obs:
+            atendimento.obs = obs
         for servico in servicos:
             atendimento.servicos.append(servico)
         db.session.add(atendimento)
         db.session.commit()
+        return atendimento
+    
+    def add_funcionario(self, atendimento, funcionario):
+        atendimento.codigo_func = funcionario.codigo
+        db.session.add(atendimento)
+        db.session.commit()
+        return atendimento
 
     def get_last_atendimento_by_id(self, pet_id):
         return  Atendimento.query.filter_by(pet_id=pet_id).first()
@@ -81,6 +92,9 @@ class AtendimentoController():
         pass
 
 class ServicoController():
+    def get_servico_by_id(self, id):
+        return Servico.query.filter_by(id=id).first()
+
     def get_servico_by_descricao(self, value):
         return Servico.query.filter_by(descricao=value).first()
     
@@ -89,6 +103,9 @@ class ServicoController():
     
     def get_all(self):
         return Servico.query.all()
+    
+    def get_servico_by_id(self, id):
+        return Servico.query.filter_by(id=id).first()
 
 class FuncionarioController():
     def create_funcionario(self, fields):

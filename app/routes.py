@@ -1,12 +1,13 @@
 from flask import render_template, redirect, flash, url_for
-from app.forms import ClienteRegisterForm, BuscaClienteForm
+from app.forms import ClienteRegisterForm, AtendimentoForm
 from app.models import Cliente, Pet
-from app.controllers import ClienteController, PetController, ServicoController
+from app.controllers import AtendimentoController, ClienteController, PetController, ServicoController
 
 def init_app(app):
     cliente_controller = ClienteController()
     pet_controller = PetController()
     servico_controller = ServicoController()
+    atendimento_controller = AtendimentoController()
 
     @app.route("/")
     @app.route("/login")
@@ -56,7 +57,7 @@ def init_app(app):
     
     @app.route("/novo-atendimento", methods=["GET", "POST"])
     def novo_atendimento():
-        form = BuscaClienteForm()
+        form = AtendimentoForm()
 
         if form.search.data:
             if not form.user_data.entries:
@@ -78,10 +79,21 @@ def init_app(app):
                 flash('Cliente não encontrado')
         
         if form.is_submitted():
-            for pet in form.pet_data:
-                print(type(pet.dog.data))
+            atendimento = atendimento_controller.create_atendimento("pendente")
+
+            print(form.pet_data[0].dog.data)
+            pet = pet_controller.get_pet_by_id(form.pet_data[0].dog.data)
+            obs = form.obs_text_area.data
+            print(obs)
+            print(pet.dono)
+            servicos = []
             for s in form.servicos_data:
-                print(type(s.servico.data))
+                if s.servico.data != 0:
+                    print(s.servico.data)
+                    servico = servico_controller.get_servico_by_id(s.servico.data)
+                    print(servico)
+                    servicos.append(servico)
+            atendimento_controller.add_atendimento(atendimento, pet, servicos, obs)
             flash("atendimento marcado")
             return redirect(url_for('novo_atendimento'))
         print(form.errors)

@@ -58,6 +58,10 @@
                         </div>
                     {% endfor %}
                 </div>
+                <div class="row mb-5">
+                    {{ form.obs_text_area.label()}}
+                    {{ form.obs_text_area(class="form-control")}}
+                </div>
                 {{ form.submit(class="btn btn-success")}}
             </form>
         </div>
