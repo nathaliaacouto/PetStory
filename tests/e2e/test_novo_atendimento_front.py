@@ -19,6 +19,7 @@ def test_novo_atendimento_interface(browser, app):
     s2_select = Select(servico2)
     s1_select.select_by_visible_text("Banho Pug")
     s2_select.select_by_visible_text("Hidratação")
+    time.sleep(1)
     browser.find_element(By.ID, "obs_text_area").send_keys("cadela idosa, cuidado ao manejar.")
     browser.find_element(By.ID, "submit").click()
     

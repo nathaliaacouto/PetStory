@@ -37,7 +37,9 @@ def app():
 
 @pytest.fixture(scope="module")
 def browser():
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless")
     service = Service(ChromeDriverManager().install())
-    browser = webdriver.Chrome(service=service)
+    browser = webdriver.Chrome(service=service, options=options)
     yield browser
     browser.close()

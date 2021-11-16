@@ -34,3 +34,4 @@ app.db
 # C code related files
 *.out
 nfe.txt
+*.so
