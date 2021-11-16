@@ -38,11 +38,10 @@ void dequeue(struct service_queue **q)
 		if ((*q)->begin == (*q)->end) {
 			(*q)->begin = NULL;
 			(*q)->end = NULL;
-			free(tmp);
 		} else {
 			(*q)->begin = tmp->next;
-			free(tmp);
 		}
+		free(tmp);
 		(*q)->size--;
 	}
 

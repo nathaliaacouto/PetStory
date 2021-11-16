@@ -2,7 +2,7 @@ from flask import render_template, redirect, flash, url_for
 from app.forms import ClienteRegisterForm, AtendimentoForm
 from app.models import Cliente, Pet
 from app.controllers import AtendimentoController, ClienteController, PetController, ServicoController
-# from app.integration import gerar_nfe
+import app.integration as integration
 
 def init_app(app):
     cliente_controller = ClienteController()
@@ -96,23 +96,22 @@ def init_app(app):
                     print(servico)
                     servicos.append(servico)
                     # CODIGO P/ CHAMAR O CTYPES
-                    # servicos_ctypes.append(servico.descricao)
-                    # servicos_ctypes.append(str(servico.valor))
-                    # servicos_ctypes.append(servico.descricao.encode('utf-8'))
-                    # servicos_ctypes.append(str(int(servico.valor)).encode())
-            # integration.gerar_nfe(len(servicos_ctypes), servicos_ctypes)
-            # curr_dir = os.path.abspath(os.path.dirname(__file__))
-            # temp_dir = os.path.join(curr_dir, "temp.txt")
-            # with open(temp_dir, "w") as f:
-            #     f.write("{}\n".format(str(len(servicos_ctypes))))
-            #     i = 0
-            #     while i < len(servicos_ctypes):
-            #         f.write("{}\n".format(servicos_ctypes[i]))
-            #         f.write("{}\n".format(servicos_ctypes[i + 1]))
-            #         i += 2
-            # gerar_nfe()
+                    servicos_ctypes.append(servico.descricao.encode('utf-8'))
+                    servicos_ctypes.append(str(int(servico.valor)).encode())
             atendimento_controller.add_atendimento(atendimento, pet, servicos, obs)
+            integration.gerar_nfe(len(servicos_ctypes), servicos_ctypes)
             flash("atendimento marcado")
             return redirect(url_for('novo_atendimento'))
         print(form.errors)
         return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
+
+# curr_dir = os.path.abspath(os.path.dirname(__file__))
+# temp_dir = os.path.join(curr_dir, "temp.txt")
+# with open(temp_dir, "w") as f:
+#     f.write("{}\n".format(str(len(servicos_ctypes))))
+#     i = 0
+#     while i < len(servicos_ctypes):
+#         f.write("{}\n".format(servicos_ctypes[i]))
+#         f.write("{}\n".format(servicos_ctypes[i + 1]))
+#         i += 2
+# gerar_nfe()
