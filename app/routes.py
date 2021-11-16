@@ -81,37 +81,20 @@ def init_app(app):
         
         elif form.is_submitted():
             atendimento = atendimento_controller.create_atendimento("pendente")
-
-            print(form.pet_data[0].dog.data)
             pet = pet_controller.get_pet_by_id(form.pet_data[0].dog.data)
             obs = form.obs_text_area.data
-            print(obs)
-            print(pet.dono)
             servicos = []
             servicos_ctypes = []
             for s in form.servicos_data:
                 if s.servico.data != 0:
-                    print(s.servico.data)
                     servico = servico_controller.get_servico_by_id(s.servico.data)
-                    print(servico)
                     servicos.append(servico)
-                    # CODIGO P/ CHAMAR O CTYPES
                     servicos_ctypes.append(servico.descricao.encode('utf-8'))
                     servicos_ctypes.append(str(int(servico.valor)).encode())
             atendimento_controller.add_atendimento(atendimento, pet, servicos, obs)
+            # CODIGO P/ CHAMAR O CTYPES
             integration.gerar_nfe(len(servicos_ctypes), servicos_ctypes)
             flash("atendimento marcado")
             return redirect(url_for('novo_atendimento'))
         print(form.errors)
         return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
-
-# curr_dir = os.path.abspath(os.path.dirname(__file__))
-# temp_dir = os.path.join(curr_dir, "temp.txt")
-# with open(temp_dir, "w") as f:
-#     f.write("{}\n".format(str(len(servicos_ctypes))))
-#     i = 0
-#     while i < len(servicos_ctypes):
-#         f.write("{}\n".format(servicos_ctypes[i]))
-#         f.write("{}\n".format(servicos_ctypes[i + 1]))
-#         i += 2
-# gerar_nfe()
