@@ -131,23 +131,3 @@ void create_nfe_2(void)
 	fprintf(nfe, "\tTOTAL:\t\tR$ %d\n", total);
 	fclose(nfe);
 }
-
-
-// int main(void)
-// {
-// char services_buffer[20];
-// char services_arr[4][20];
-
-// printf("Digite os servicos:\n");
-// for (int i = 0; i < 4; i++) {
-// fgets(services_buffer, 20, stdin);
-// services_buffer[strcspn(services_buffer, "\n")] = 0;
-// strcpy(services_arr[i], services_buffer);
-// }
-
-// for (int i = 0; i < 4; i++)
-// printf("%s%s", services_arr[i], (i == 3) ? "\n" : ", ");
-// create_nfe(4, services_arr);
-// printf("Nota fiscal gerada com sucesso\n");
-
-// }
