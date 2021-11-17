@@ -1,14 +1,35 @@
-body {
-        background-color: #00AEAC;
+:root {
+        --blue: #00AEAC;
+        --orange: #FFBC01;
 }
 
-.container {
-        background-color: rgba(255, 255, 255, 0.473);
+a {
+        color: var(--blue);
+}
+
+a:hover {
+        color: var(--orange);
+}
+
+.container-1 {
+        width: 60%;
+        height: 600px;
+        background-image: url("petstory-login-img.png");
+        float: left;
+}
+
+.container-2 {
         margin-top: 10%;
         width: 30%;
         border-radius: 5px;
         padding: 10px;
         text-align: center;
+        float: right;
+        margin-right: 70px;
+}
+
+.title {
+        color: var(--blue);
 }
 
 .input-txt {
@@ -25,12 +46,35 @@ button {
         padding: 3px;
         border-radius: 5px;
         border: 1px solid #00AEAC;
-        background-color: #FFBC01;
+        background-color: var(--blue);
         margin-bottom: 3px;
 }
 
-button:hover {
-        background-color: #00AEAC;
+.button-enter button {
+        color: white;
+}
+
+.button-enter :hover {
+        background-color: var(--orange);
+}
+
+#remember-forgot {
+        margin-top: 10px;
+}
+
+#forgot {
+       margin-left: 20px;
+}
+
+.container-3 {
+        display: inline;
+}
+
+.remember {
+        border-radius: 1%;
+        height: 15px;
+        width: 15px;
+        background-color: rgb(231, 231, 231);
 }
 
 
