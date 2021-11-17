@@ -9,73 +9,63 @@
             {{ error }}
         </div>
     {% endfor %}
-    <h1 class="marcar-txt mb-5">Serviços</h1>
+    <h1 class="marcar-txt mb-5 text-center">Novo Atendimento</h1>
     {% with messages = get_flashed_messages() %}
         <div class="messages">
-            <ul class="alert-list" role="alert">
+            <ul class="alert-list text-center mt-3" role="alert">
             {% for message in messages %}
                 <li class="alert alert-danger">{{ message }}</li>
             {% endfor %}    
             </ul>
         </div>
     {% endwith %}
-    <div class="row">
-        <div class="col-lg-6 col-md-12">
-            <form action='' method='post' novalidate>
-                {{ form.hidden_tag() }}
-                <!-- <div class="backdrop">
-                    <div class="cliente-modal">
-                    </div>
-                </div> -->
-                <div class="mb-5">
-                    {{ form.search_box.label() }}
-                    {{ form.search_box()}}
-                    {{ form.search(class="btn btn-success")}}
-                </div>
-                <div class="row mb-5">
-                    {% for user in form.user_data %}
-                        <div class="col-lg-4">
-                            {{ user.nome.label(class="form-label start-label") }}
-                            {{ user.nome(class="form-control", disabled=True) }}
-                        </div>
-                        <div class="col-lg-4">
-                            {{ user.telefone.label(class="form-label start-label")}}
-                            {{ user.telefone(class="form-control", disabled=True) }}
-                        </div>
-                    {% endfor %}
-                    {% for pet in form.pet_data %}
-                        <div class="col-lg-4">
-                            {{ pet.dog.label() }}
-                            {{ pet.dog(class="form-select pet-select")}}
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="row mb-5">
-                    {% for s in form.servicos_data %}
-                        <div class="col-lg-4">
-                            {{ s.servico.label() }}
-                            {{ s.servico(class="form-select")}}
-                        </div>
-                    {% endfor %}
-                    <div class="col-lg-4">
-                        {% for s in form.cages_data %}
-                            <div class="col-lg-4">
-                                {{ s.available_cages.label() }}
-                                {{ s.available_cages(class="form-select")}}
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="row mb-5">
-                    {{ form.obs_text_area.label()}}
-                    {{ form.obs_text_area(class="form-control")}}
-                </div>
-                {{ form.submit(class="btn btn-success")}}
-            </form>
+    <a class="back-link" href="/servicos">Voltar</a>
+    <form action='' method='post' novalidate>
+        {{ form.hidden_tag() }}
+        <div class="mb-5 text-center">
+            {{ form.search_box.label(class="search-label") }}
+            {{ form.search_box()}}
+            {{ form.search(class="btn btn-success")}}
         </div>
-        <div class="col-lg-6 col-md-12">
-            Coluna de servicos
+        <div class="row mb-5">
+            {% for user in form.user_data %}
+                <div class="col-lg-4">
+                    {{ user.nome.label(class="form-label start-label") }}
+                    {{ user.nome(class="form-control", disabled=True) }}
+                </div>
+                <div class="col-lg-4">
+                    {{ user.telefone.label(class="form-label start-label")}}
+                    {{ user.telefone(class="form-control", disabled=True) }}
+                </div>
+            {% endfor %}
+            {% for pet in form.pet_data %}
+                <div class="col-lg-4">
+                    {{ pet.dog.label() }}
+                    {{ pet.dog(class="form-select pet-select")}}
+                </div>
+            {% endfor %}
         </div>
-    </div>
+        <div class="row mb-5">
+            {% for s in form.servicos_data %}
+                <div class="col-lg-4">
+                    {{ s.servico.label() }}
+                    {{ s.servico(class="form-select")}}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row mb-5">
+            {% for s in form.cages_data %}
+                <div class="col-lg-2">
+                    {{ s.available_cages.label() }}
+                    {{ s.available_cages(class="form-select")}}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row mb-5">
+            {{ form.obs_text_area.label()}}
+            {{ form.obs_text_area(class="form-control")}}
+        </div>
+        {{ form.submit(class="btn btn-success")}}
+    </form>
 </div>
 {% endblock %}

@@ -46,15 +46,9 @@ def init_app(app):
             return redirect(url_for('registro'))
         return render_template('registro.html', form=form, title="Registro")
     
-    @app.route("/fila")
-    def fila():
-        # (alert): because i remove "from app.model import Model", 
-        #          so this function/endpoint has server error. att@silvamva
-
-        # data = Model.read()
-        # return render_template("queue.html", data=data, title="Fila de Atendimentos")
-
-        return "<h2>Em desenvolvimento</h2>"
+    @app.route("/servicos")
+    def servicos():
+        return render_template("servicos.html", title="Serviços")
     
     @app.route("/novo-atendimento", methods=["GET", "POST"])
     def novo_atendimento():

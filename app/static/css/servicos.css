@@ -1,0 +1,22 @@
+:root {
+  --petst-primary-color: #00AEAC;
+}
+
+.marcar-txt {
+  color: #00AEAC;
+  text-align: center;
+}
+
+.new:link,
+.new:visited {
+  text-decoration: none;
+  color: #00AEAC;
+  font-size: 1rem;
+  border-bottom: 1px solid transparent;
+  transition: all 300ms;
+}
+
+.new:hover,
+.new:active {
+  border-bottom: 1px solid var(--petst-primary-color);
+}
