@@ -29,6 +29,13 @@ source ./venv/bin/activate
 ```shell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
+
+:warning: É recomendável atualizar o pip e o setuptools da virtualenv para fazer corretamente o build das dependências
+```shell
+pip install --upgrade pip
+pip install --upgrade setuptools
+```
+
 Instalar todas as dependências do projeto com o pip
 ```shell
 pip install -r requirements.txt
