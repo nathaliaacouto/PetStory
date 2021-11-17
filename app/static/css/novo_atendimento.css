@@ -1,4 +1,9 @@
 
+body {
+  font-family: 'Roboto';
+  background-color: #E5E5E5;
+}
+
 .marcar-txt {
         color: #00AEAC;
 }
@@ -6,15 +11,15 @@
 .back-link:link,
 .back-link:visited {
         text-decoration: none;
+        font-size: 1.25rem;
         color: #00AEAC;
-        font-size: 1rem;
-        border-bottom: 1px solid transparent;
+        border-bottom: 1px solid #016D6C;
         transition: all 300ms;
 }
 
 .back-link:hover,
 .back-link:active {
-        border-bottom: 1px solid #00AEAC;
+        border-bottom: 1px solid transparent;
 }
 
 .start-label {

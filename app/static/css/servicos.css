@@ -2,21 +2,118 @@
   --petst-primary-color: #00AEAC;
 }
 
+body {
+  font-family: 'Roboto';
+  background-color: #E5E5E5;
+}
+
 .marcar-txt {
   color: #00AEAC;
   text-align: center;
 }
 
-.new:link,
-.new:visited {
+.add:link,
+.add:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   text-decoration: none;
-  color: #00AEAC;
+  color: #fff;
+  background-color: #00AEAC;
+  border-radius: 1rem;
   font-size: 1rem;
-  border-bottom: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  opacity: 1;
   transition: all 300ms;
 }
 
-.new:hover,
-.new:active {
-  border-bottom: 1px solid var(--petst-primary-color);
+.add-icon {
+  font-size: 1.5rem;
+  color: rgba(1, 109, 107, 0.85);
+}
+
+.add:hover,
+.add:active {
+  opacity: 0.8;
+}
+
+.servicos-heading {
+  font-size: 1.5rem;
+  color: #494848;
+  border-radius: 1rem;
+  padding: 0.8rem;
+}
+
+.pendente {
+  background-color: #71B2FF;
+}
+
+.andamento {
+  background-color: #FAC303; 
+}
+
+.concluido {
+  background-color: #06BE71;
+}
+
+.servico-card {
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.servico-card.servico-card-pendente {
+  background-color: rgba(113, 177, 255, 0.5)
+}
+
+.servico-card.servico-card-andamento {
+  background-color: rgba(250, 196, 3, 0.5);
+}
+
+.servico-card.servico-card-concluido {
+  background-color: rgba(6, 190, 113, 0.4);
+}
+
+.servico-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.servico-card__pet-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.update-btn {
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  color: #494848;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  transition: all 300ms;
+}
+
+.update-btn:hover {
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.3);
+}
+
+.update-btn.start-btn {
+  background-color: #FAC303; 
+}
+
+.update-btn.end-btn {
+  background-color: rgb(6, 190, 113, 0.5);
+}
+
+.update-btn.next-btn {
+  background-color: #06BE71;
 }

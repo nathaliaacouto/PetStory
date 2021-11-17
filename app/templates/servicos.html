@@ -1,13 +1,85 @@
 {% extends "base.html" %}
 {% block head %}
   <link rel="stylesheet" href="/static/css/servicos.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 {% endblock %}
 {% block content %}
-<div class="container-xl">
+<div class="container-xxl">
   <h1 class="marcar-txt mt-3 mb-5">Serviços</h1>
-  <a class="new" href="/novo-atendimento">Novo Serviço</a>
+  <a class="add mb-5" href="/novo-atendimento">Adicionar novo serviço  <i class="far fa-arrow-alt-circle-down add-icon"></i></a>
   <div class="row" id="root">
-    <div class="col-lg-4"></div>
+    <div class="col-lg-4 text-center">
+      <h2 class="servicos-heading pendente mb-3">Serviços a serem feitos</h2>
+      <div class="col-lg-6 servico-card servico-card-pendente">
+        <div class="servico-card-row">
+          <p class="servico-card__gaiola">GAIOLA 10</p>
+          <p class="servico-card__funcionario">Sem Funcionario</p>
+        </div>
+        <div class="servico-card-row">
+          <div class="servico-card__pet-info">
+            <i class="fas fa-paw"></i>
+            <p class="pet-name">Stella</p>
+          </div>
+          <p class="servico-description">Banho</p>
+        </div>
+        <div class="servico-card-row">
+            <p class="pet-breed">Husky siberiano</p>
+        </div>
+        <div class="servico-card-row">
+            <p class="pet-collar">Coleira 10</p>
+            <p class="pet-owner">Tutor: Gustavo</p>
+        </div>
+        <button class="update-btn start-btn" id="start-btn">Iniciar Serviço <i class="fas fa-play"></i></button>
+      </div>
+    </div>
+    <div class="col-lg-4 text-center">
+      <h2 class="servicos-heading andamento mb-3">Serviços em andamento</h2>
+      <div class="col-lg-6 servico-card servico-card-andamento">
+        <div class="servico-card-row">
+          <div class="servico-card__pet-info">
+            <i class="fas fa-paw"></i>
+            <p class="pet-name">Oliver</p>
+          </div>
+          <p class="pet-collar">Coleira 18</p>
+        </div>
+        <div class="servico-card-row">
+          <p class="pet-breed">SRD</p>
+        </div>
+        <div class="servico-card-row">
+          <div class="pet-owner">Tutor: Gabriel</div>
+          <div class="servico-description">Banho e Tosa higiênica</div>
+        </div>
+        <div class="servico-card-row">
+          <p class="servico-card__funcionario">Funcionario Carlos</p>
+        </div>
+        <button class="update-btn end-btn" id="end-btn">Serviço concluído <i class="fas fa-check-circle start-icon"></i></button>
+      </div>
+    </div>
+    <div class="col-lg-4 text-center">
+      <h2 class="servicos-heading concluido mb-3">Serviços concluídos</h2>
+      <div class="col-lg-6 servico-card servico-card-concluido">
+        <div class="servico-card-row">
+          <p class="servico-card__gaiola">GAIOLA 10</p>
+          <p class="servico-card__funcionario">Funcionaria Claudia</p>
+        </div>
+        <div class="servico-card-row">
+          <div class="servico-card__pet-info">
+            <i class="fas fa-paw"></i>
+            <p class="pet-name">Aylla</p>
+          </div>
+          <p class="servico-description">Banho e Tosa higiênica</p>
+        </div>
+        <div class="servico-card-row">
+          <div class="pet-collar">Coleira 1</div>
+        </div>
+        <div class="servico-card-row">
+          <p class="pet-owner">Tutor: Lucas Fernandes</p>
+        </div>
+        <button class="update-btn next-btn" id="next-btn"><i class="fas fa-check-circle start-icon"></i> Gaiola disponível </i></button>
+      </div>
+    </div>
   </div>
 </div>
+<script src="/static/js/jquery-3.6.0.min.js" type="text/javascript"></script>
+<script src="/static/js/servicos.js" type="text/javascript"></script>
 {% endblock %}
