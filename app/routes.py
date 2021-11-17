@@ -1,6 +1,6 @@
 from flask import render_template, redirect, flash, url_for
 from app.forms import ClienteRegisterForm, AtendimentoForm
-from app.models import Cliente, Pet
+from app.models import Cliente, Gaiola, Pet
 from app.controllers import AtendimentoController, ClienteController, PetController, ServicoController
 import app.integration as integration
 
@@ -76,6 +76,10 @@ def init_app(app):
                     for i in range(MAX_ENTRIES):
                         form.servicos_data.append_entry()
                         form.servicos_data.entries[i].servico.choices = servicos_options
+                    form.cages_data.append_entry()
+                    gaiolas = Gaiola.query.filter_by(disponivel=True).all()
+
+                    form.cages_data.entries[0].available_cages.choices = [(g.id, str(g.numero)) for g in gaiolas]
                     return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
                 flash('Cliente não encontrado')
         
@@ -83,6 +87,7 @@ def init_app(app):
             atendimento = atendimento_controller.create_atendimento("pendente")
             pet = pet_controller.get_pet_by_id(form.pet_data[0].dog.data)
             obs = form.obs_text_area.data
+            gaiola = form.cages_data[0].available_cages.data
             servicos = []
             servicos_ctypes = []
             for s in form.servicos_data:
@@ -91,7 +96,7 @@ def init_app(app):
                     servicos.append(servico)
                     servicos_ctypes.append(servico.descricao.encode('utf-8'))
                     servicos_ctypes.append(str(int(servico.valor)).encode())
-            atendimento_controller.add_atendimento(atendimento, pet, servicos, obs)
+            atendimento_controller.add_atendimento(atendimento, pet, servicos, gaiola, obs)
             # CODIGO P/ CHAMAR O CTYPES
             integration.gerar_nfe(len(servicos_ctypes), servicos_ctypes)
             flash("atendimento marcado")

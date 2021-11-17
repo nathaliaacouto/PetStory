@@ -35,3 +35,6 @@ app.db
 *.out
 nfe.txt
 *.so
+
+# db migrations env
+!migrations/env.py

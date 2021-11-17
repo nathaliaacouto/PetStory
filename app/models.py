@@ -37,6 +37,7 @@ class Atendimento(db.Model):
     data = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     status = db.Column(db.String(15), index=True)
     pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
+    gaiola = db.Column(db.Integer)
     codigo_func = db.Column(db.Integer, index=True)
     obs = db.Column(db.String(200))
     servicos = db.relationship(
@@ -67,3 +68,8 @@ class Funcionario(db.Model):
     
     def __repr__(self):
         return '<Funcionario {} | codigo {}'.format(self.nome, self.codigo)
+
+class Gaiola(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    numero = db.Column(db.Integer, index=True)
+    disponivel = db.Column(db.Boolean, default=True)

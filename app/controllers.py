@@ -1,5 +1,5 @@
 from app import db
-from app.models import Cliente, Pet, Servico, Atendimento, Funcionario
+from app.models import Cliente, Gaiola, Pet, Servico, Atendimento, Funcionario
 
 class ClienteController():
     def create_cliente(self, fields):
@@ -62,8 +62,10 @@ class AtendimentoController():
         )
         return atendimento
 
-    def add_atendimento(self, atendimento, pet, servicos, obs=None):
+    def add_atendimento(self, atendimento, pet, servicos, gaiola, obs=None):
         atendimento.pet_atendido = pet
+        atendimento.gaiola = gaiola
+        self.lock_gaiola(gaiola)
         if obs:
             atendimento.obs = obs
         for servico in servicos:
@@ -87,7 +89,16 @@ class AtendimentoController():
 
     def get_atendimentos_by_status(self, status):
         return Atendimento.query.filter_by(status=status).all()
-
+    
+    def lock_gaiola(self, gaiola_id):
+        gaiola = Gaiola.query.filter_by(id=gaiola_id).first()
+        gaiola.disponivel = False
+        db.session.add(gaiola)
+        db.session.commit()
+    
+    def get_gaiola(self, atendimento):
+        return Gaiola.query.filter_by(id=atendimento.gaiola).first()
+    
     def update_status(self, atendimento, novo_status):
         pass
 

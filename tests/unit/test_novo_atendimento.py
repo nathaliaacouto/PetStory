@@ -31,15 +31,18 @@ def test_registro_atendimento():
     servicos = []
     servicos.append(s_controller.get_servico_by_descricao("Banho Shihtzu"))
     servicos.append(s_controller.get_servico_by_descricao("Hidratação"))
+    gaiola = 2
     print(atendimento)
     print(pet)
     for s in servicos:
         print(s)
-    a_controller.add_atendimento(atendimento, pet, servicos)
+    a_controller.add_atendimento(atendimento, pet, servicos, gaiola)
     novo_atendimento = a_controller.get_last_atendimento_by_id(pet.id)
     a_controller.add_funcionario(novo_atendimento, carlos)
     lista_servicos = []
     for servico in novo_atendimento.servicos.all():
         lista_servicos.append(servico.descricao +' '+ str(servico.valor))
+    gaiola_atual = a_controller.get_gaiola(novo_atendimento)
     assert lista_servicos[0] == "Banho Shihtzu 30.0" and lista_servicos[1] == "Hidratação 10.0"
     assert novo_atendimento.codigo_func == carlos.codigo
+    assert gaiola_atual.id == 2 and gaiola_atual.disponivel == False

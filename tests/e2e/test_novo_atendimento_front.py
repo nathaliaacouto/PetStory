@@ -20,6 +20,10 @@ def test_novo_atendimento_interface(browser, app):
     s1_select.select_by_visible_text("Banho Pug")
     s2_select.select_by_visible_text("Hidratação")
     time.sleep(1)
-    browser.find_element(By.ID, "obs_text_area").send_keys("cadela idosa, cuidado ao manejar.")
-    browser.find_element(By.ID, "submit").click()
+    browser.find_element(By.ID, "obs_text_area").send_keys("cachorro idoso, cuidado ao manejar.")
+    gaiola = browser.find_element(By.ID, "cages_data-0-available_cages")
+    g_select = Select(gaiola)
+    g_select.select_by_visible_text("3")
+    submit = browser.find_element(By.ID, "submit")
+    browser.execute_script("arguments[0].click()", submit)
     
