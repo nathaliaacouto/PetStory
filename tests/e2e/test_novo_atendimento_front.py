@@ -12,7 +12,6 @@ def test_novo_atendimento_interface(browser, app):
     select_element = browser.find_element(By.ID, "pet_data-0-dog")
     select_object = Select(select_element)
     select_object.select_by_visible_text("Toto")
-    assert select_element.get_attribute("value") == "1"
     servico1 = browser.find_element(By.ID, "servicos_data-0-servico")
     servico2 = browser.find_element(By.ID, "servicos_data-1-servico")
     s1_select = Select(servico1)
@@ -26,4 +25,3 @@ def test_novo_atendimento_interface(browser, app):
     g_select.select_by_visible_text("3")
     submit = browser.find_element(By.ID, "submit")
     browser.execute_script("arguments[0].click()", submit)
-    
