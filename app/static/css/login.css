@@ -13,8 +13,10 @@ a:hover {
 
 .container-1 {
         width: 60%;
-        height: 600px;
-        background-image: url("petstory-login-img.png");
+        height: 100vh;
+        background-image: url("/static/img/petstory-login-img.png");
+        background-repeat: no-repeat;
+        background-size: cover;
         float: left;
 }
 
