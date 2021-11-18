@@ -87,7 +87,7 @@ class AtendimentoController():
         cliente = Cliente.query.filter_by(id=cliente.id).first()
         pass
 
-    def get_atendimentos_by_status(self, status):
+    def list_atendimentos_by_status(self, status):
         return Atendimento.query.filter_by(status=status).all()
     
     def lock_gaiola(self, gaiola_id):

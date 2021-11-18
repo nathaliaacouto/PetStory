@@ -7,7 +7,7 @@
 <div class="container-xxl">
   <h1 class="marcar-txt mt-3 mb-5">Serviços</h1>
   <a class="add mb-5" href="/novo-atendimento">Adicionar novo serviço  <i class="far fa-arrow-alt-circle-down add-icon"></i></a>
-  <div class="row" id="root">
+  <div class="row mb-5" id="root">
     <div class="col-lg-4 text-center">
       <h2 class="servicos-heading pendente mb-3">Serviços a serem feitos</h2>
       <div class="col-lg-6 servico-card servico-card-pendente">
@@ -31,6 +31,33 @@
         </div>
         <button class="update-btn start-btn" id="start-btn">Iniciar Serviço <i class="fas fa-play"></i></button>
       </div>
+      {% for atend in atend_pendentes %}
+        <div class="col-lg-6 servico-card servico-card-pendente">
+          <div class="servico-card-row">
+            <p class="servico-card__gaiola">GAIOLA {{ atend.gaiola }}</p>
+            <p class="servico-card__funcionario">Sem Funcionário</p>
+          </div>
+          <div class="servico-card-row">
+            <div class="servico-card__pet-info">
+              <i class="fas fa-paw"></i>
+              <p class="pet-name">{{ atend.nome_pet }}</p>
+            </div>
+            <ul class="servicos">
+              {% for s in atend.servicos %}
+                <li><p class="servico-description">{{ s }}</p></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="servico-card-row">
+              <p class="pet-breed">{{ atend.raca_pet }}</p>
+          </div>
+          <div class="servico-card-row">
+              <p class="pet-collar">Coleira {{ atend.gaiola }}</p>
+              <p class="pet-owner">Tutor: {{ atend.tutor }}</p>
+          </div>
+          <button class="update-btn start-btn" id="start-btn">Iniciar Serviço <i class="fas fa-play"></i></button>
+        </div>
+      {% endfor %}
     </div>
     <div class="col-lg-4 text-center">
       <h2 class="servicos-heading andamento mb-3">Serviços em andamento</h2>

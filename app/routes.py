@@ -48,7 +48,25 @@ def init_app(app):
     
     @app.route("/servicos")
     def servicos():
-        return render_template("servicos.html", title="Serviços")
+        atend_pendentes = []
+        pendentes = atendimento_controller.list_atendimentos_by_status("pendente")
+        for p in pendentes:
+            servico = {}
+            pet_info = pet_controller.get_pet_by_id(p.pet_id)
+            cliente_info = cliente_controller.get_cliente_by_id(pet_info.dono_id)
+            servico['gaiola'] = p.gaiola
+            servico['nome_pet'] = pet_info.nome
+            servico['raca_pet'] = pet_info.raca
+            servico['tutor'] = cliente_info.nome
+            servico['servicos'] = [serv.descricao for serv in p.servicos]
+            atend_pendentes.append(servico)
+        # andamento = atendimento_controller.list_atendimentos_by_status("em andamento")
+        # concluidos = atendimento_controller.list_atendimentos_by_status("concluido")
+        return render_template("servicos.html", title="Serviços", atend_pendentes=atend_pendentes)
+    
+    @app.route("/process-atendimento", methods=["POST"])
+    def process_atendimento():
+        pass
     
     @app.route("/novo-atendimento", methods=["GET", "POST"])
     def novo_atendimento():
