@@ -1,10 +1,11 @@
 :root {
   --petst-primary-color: #00AEAC;
+  --petst-background-color: #E5E5E5;
 }
 
 body {
   font-family: 'Roboto';
-  background-color: #E5E5E5;
+  background-color: var(--petst-background-color);
 }
 
 .marcar-txt {

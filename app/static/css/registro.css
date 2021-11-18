@@ -1,6 +1,11 @@
 /* - Font sizes (px):
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
 
+:root {
+  --petst-primary-color: #00AEAC;
+  --petst-primary-color-transparent: rgba(0, 174, 171, 0.4);
+}
+
 /* GLOBAL RESET */
 * {
   margin: 0;
@@ -14,6 +19,7 @@ body {
   line-height: 1;
   font-weight: 400;
   color: #444;
+  font-family: 'Roboto';
 }
 
 /* Reusable Components */
@@ -23,7 +29,7 @@ body {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 4rem;
-  color: #00AEAC;
+  color: var(--petst-primary-color);
 
 }
 
@@ -41,15 +47,17 @@ body {
 .form-input {
   width: 100%;
   padding: 0.5rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: var(--petst-primary-color-transparent);
   font-size: 1rem;
 }
 
 .button {
   font-size: 1rem;
-  font-weight: 500;
   color: #fff;
   padding: 0.5rem 1.125rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   opacity: 1;
   transition: all 300ms;
 }
@@ -66,7 +74,9 @@ body {
 
 .register-form__add-photo {
   margin-top: 0.625rem;
-  font-size: 1rem;
+  font-size: 1.125rem;
+  color: var(--petst-primary-color);
+  border-bottom: 1px solid var(--petst-primary-color);
 }
 
 .register-form__actions {
@@ -90,7 +100,7 @@ body {
 
 .submit-button {
   border: none;
-  background-color: #51cf66;
+  background-color: var(--petst-primary-color);
   cursor: pointer;
 }
 
@@ -113,4 +123,10 @@ body {
 
 .pet-form.hidden {
   display: none;
+}
+
+.pets-heading {
+  font-size: 1.25rem;
+  padding: 0.25rem 0;
+  border-bottom : 1px solid #babaca;
 }

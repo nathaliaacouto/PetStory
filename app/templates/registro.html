@@ -17,8 +17,8 @@
 <div class="container">
   <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
-    {{ form.add_pet(class="btn btn-primary mb-3")}}
-    <div class="form-control">
+    {{ form.add_pet(class="button submit-button mb-3")}}
+    <div>
       <div class="row mb-3">
         <div class="col-lg-4 col-md-12">
           {{ form.owner.label(class="form-label") }} {{
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col-lg-4 col-md-12">
+        <div class="col-lg-3 col-md-12">
           {{ form.zip_code.label(class="form-label") }} {{
           form.zip_code(class="form-input") }}
         </div>
@@ -47,21 +47,22 @@
           form.email(class="form-input") }}
         </div>
       </div>
+      <p class="pets-heading mb-3">Informações do(s) pet(s)</p>
         {% for pet in form.pets %}
           <div class="row mb-3 pet-form">
             <div class="col-lg-4 col-md-12">
               {{ pet.dog.label(class="form-label") }} 
               {{ pet.dog(class="form-input") }}
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-3 col-md-12">
               {{ pet.breed.label(class="form-label") }} 
               {{ pet.breed(class="form-input") }}
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-3 col-md-12">
               {{ pet.fur.label(class="form-label") }} 
               {{ pet.fur(class="form-input") }}
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-2 col-md-12">
               {{ pet.age.label(class="form-label") }} 
               {{ pet.age(class="form-input") }}
             </div>
