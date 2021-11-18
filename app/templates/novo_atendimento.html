@@ -24,18 +24,18 @@
         {{ form.hidden_tag() }}
         <div class="mb-5 text-center">
             {{ form.search_box.label(class="search-label") }}
-            {{ form.search_box()}}
-            {{ form.search(class="btn btn-success")}}
+            {{ form.search_box(class="form-input search-input")}}
+            {{ form.search(class="update-btn search-btn")}}
         </div>
-        <div class="row mb-5">
+        <div class="row form-row mb-5">
             {% for user in form.user_data %}
                 <div class="col-lg-4">
                     {{ user.nome.label(class="form-label start-label") }}
-                    {{ user.nome(class="form-control", disabled=True) }}
+                    {{ user.nome(class="form-input", disabled=True) }}
                 </div>
                 <div class="col-lg-4">
                     {{ user.telefone.label(class="form-label start-label")}}
-                    {{ user.telefone(class="form-control", disabled=True) }}
+                    {{ user.telefone(class="form-input", disabled=True) }}
                 </div>
             {% endfor %}
             {% for pet in form.pet_data %}
@@ -63,9 +63,9 @@
         </div>
         <div class="row mb-5">
             {{ form.obs_text_area.label()}}
-            {{ form.obs_text_area(class="form-control")}}
+            {{ form.obs_text_area(class="form-input")}}
         </div>
-        {{ form.submit(class="btn btn-success")}}
+        {{ form.submit(class="update-btn submit-btn mb-5")}}
     </form>
 </div>
 {% endblock %}

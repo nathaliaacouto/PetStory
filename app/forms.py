@@ -2,7 +2,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField, FormField, FieldList, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Length, Optional
 
-from app.models import Gaiola
 class PetRegisterForm(FlaskForm):
     class Meta:
         csrf = False
@@ -51,4 +50,4 @@ class AtendimentoForm(FlaskForm):
     cages_data = FieldList(FormField(GaiolasForm), min_entries=0, max_entries=1)
     obs_text_area = TextAreaField("Observações", validators=[Optional(), Length(max=200)])
     search = SubmitField('Buscar')
-    submit = SubmitField('Registrar Atendimento')
+    submit = SubmitField('Adicionar novo serviço')
