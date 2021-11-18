@@ -1,14 +1,20 @@
 :root {
-        --blue: #00AEAC;
-        --orange: #FFBC01;
+        --petst-primary-color: #00AEAC;
+        --petst-background-color: #E5E5E5;
+        --petst-orange: #FFBC01;
+}
+      
+body {
+        font-family: 'Roboto';
+        background-color: var(--petst-background-color);
 }
 
 a {
-        color: var(--blue);
+        color: var(--petst-primary-color);
 }
 
 a:hover {
-        color: var(--orange);
+        color: var(--petst-orange);
 }
 
 .container-1 {
@@ -31,7 +37,7 @@ a:hover {
 }
 
 .title {
-        color: var(--blue);
+        color: var(--petst-primary-color);
 }
 
 .input-txt {
@@ -48,7 +54,7 @@ button {
         padding: 3px;
         border-radius: 5px;
         border: 1px solid #00AEAC;
-        background-color: var(--blue);
+        background-color: var(--petst-primary-color);
         margin-bottom: 3px;
 }
 
@@ -57,7 +63,7 @@ button {
 }
 
 .button-enter :hover {
-        background-color: var(--orange);
+        background-color: var(--petst-orange);
 }
 
 #remember-forgot {

@@ -55,7 +55,7 @@ Prossiga com a inicialização do servidor local com o seguinte comando:
 (venv) flask run
 ```
 
-<h3>Página dos integrantes no github</h3>
+# Página dos integrantes no github
 <ul>
 🔸 <a target="_blank" href="https://github.com/lucasborges">Lucas Borges</a><br>
 🔸 <a target="_blank" href="https://github.com/lucasLBF">Lucas Fernandes</a><br>
