@@ -1,6 +1,7 @@
 from app import db
 from app.models import Cliente, Gaiola, Pet, Servico, Atendimento, Funcionario
 
+
 class ClienteController():
     def create_cliente(self, fields):
         cliente = Cliente(
@@ -19,13 +20,14 @@ class ClienteController():
 
     def get_cliente_by_nome(self, nome):
         return Cliente.query.filter_by(nome=nome).first()
-    
+
     def get_cliente_by_telefone(self, telefone):
         return Cliente.query.filter_by(telefone=telefone).first()
-    
+
     def get_cliente_by_id(self, id):
         return Cliente.query.filter_by(id=id).first()
-    
+
+
 class PetController():
     def create_pet(self, fields):
         pet = Pet(
@@ -41,7 +43,7 @@ class PetController():
         pet.dono = cliente
         db.session.add(pet)
         db.session.commit()
-    
+
     # cliente -> string
     def list_pets_from_cliente(self, cliente):
         controller = ClienteController()
@@ -51,9 +53,10 @@ class PetController():
 
     def get_pet_by_nome(self, nome):
         return Pet.query.filter_by(nome=nome).first()
-    
+
     def get_pet_by_id(self, id):
         return Pet.query.filter_by(id=id).first()
+
 
 class AtendimentoController():
     def create_atendimento(self, status):
@@ -73,39 +76,39 @@ class AtendimentoController():
         db.session.add(atendimento)
         db.session.commit()
         return atendimento
-    
+
     def add_funcionario(self, atendimento, funcionario):
         atendimento.codigo_func = funcionario.codigo
         db.session.add(atendimento)
         db.session.commit()
         return atendimento
-    
+
     def get_atendimento_by_id(self, atend_id):
         return Atendimento.query.filter_by(id=atend_id).first()
 
     def get_last_atendimento_by_id(self, pet_id):
-        return  Atendimento.query.filter_by(pet_id=pet_id).first()
-    
+        return Atendimento.query.filter_by(pet_id=pet_id).first()
+
     def get_atendimentos_by_cliente(self, cliente):
         cliente = Cliente.query.filter_by(id=cliente.id).first()
         pass
 
     def list_atendimentos_by_status(self, status):
         return Atendimento.query.filter_by(status=status).all()
-    
+
     def lock_gaiola(self, gaiola_id):
         gaiola = Gaiola.query.filter_by(id=gaiola_id).first()
         gaiola.disponivel = False
         db.session.commit()
-    
+
     def unlock_gaiola(self, gaiola_id):
         gaiola = Gaiola.query.filter_by(id=gaiola_id).first()
         gaiola.disponivel = True
         db.session.commit()
-    
+
     def get_gaiola(self, atendimento):
         return Gaiola.query.filter_by(id=atendimento.gaiola).first()
-    
+
     def update_status(self, atendimento):
         if atendimento.status == "pendente":
             atendimento.status = "em andamento"
@@ -114,8 +117,8 @@ class AtendimentoController():
         elif atendimento.status == "concluido":
             self.unlock_gaiola(atendimento.gaiola)
             atendimento.status = "arquivado"
-            
         db.session.commit()
+
 
 class ServicoController():
     def get_servico_by_id(self, id):
@@ -123,15 +126,13 @@ class ServicoController():
 
     def get_servico_by_descricao(self, value):
         return Servico.query.filter_by(descricao=value).first()
-    
+
     def get_servico_by_valor(self, value):
         return Servico.query.filter_by(valor=value).first()
-    
+
     def get_all(self):
         return Servico.query.all()
-    
-    def get_servico_by_id(self, id):
-        return Servico.query.filter_by(id=id).first()
+
 
 class FuncionarioController():
     def create_funcionario(self, fields):
@@ -143,6 +144,6 @@ class FuncionarioController():
             cargo=fields.get('cargo', None)
         )
         return funcionario
-    
+
     def get_funcionario_by_codigo(self, codigo):
         return Funcionario.query.filter_by(codigo=codigo).first()

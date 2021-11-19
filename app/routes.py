@@ -1,8 +1,10 @@
+# flake8: noqa
 from flask import render_template, redirect, flash, url_for, jsonify, request
 from app.forms import ClienteRegisterForm, AtendimentoForm
 from app.models import Gaiola, Pet
 from app.controllers import AtendimentoController, ClienteController, PetController, ServicoController, FuncionarioController
 import app.integration as integration
+
 
 def init_app(app):
     cliente_controller = ClienteController()
@@ -15,7 +17,7 @@ def init_app(app):
     @app.route("/login")
     def login():
         return render_template("login.html", title="Login")
-    
+
     @app.route("/registro", methods=["GET", "POST"])
     def registro():
         form = ClienteRegisterForm()
@@ -34,7 +36,7 @@ def init_app(app):
             })
             cliente_controller.add_cliente(cliente)
             for pet in form.pets:
-               if pet.dog.data:
+                if pet.dog.data:
                     new = Pet(
                         nome=pet.dog.data,
                         raca=pet.breed.data,
@@ -46,7 +48,7 @@ def init_app(app):
             flash('Cadastro realizado com sucesso!')
             return redirect(url_for('registro'))
         return render_template('registro.html', form=form, title="Registro")
-    
+
     @app.route("/servicos")
     def servicos():
         atend_pendentes = []
@@ -82,7 +84,7 @@ def init_app(app):
             servico['servicos'] = [serv.descricao for serv in a.servicos]
             servico['obs'] = a.obs or "Sem observações"
             atend_andamento.append(servico)
-            
+
         for c in concluidos:
             servico = {}
             pet_info = pet_controller.get_pet_by_id(c.pet_id)
@@ -104,7 +106,7 @@ def init_app(app):
             atend_andamento=atend_andamento,
             atend_concluido=atend_concluido
         )
-    
+
     @app.route("/process-atendimento", methods=["POST"])
     def process_atendimento():
         atend_id = request.form["id"]
@@ -114,8 +116,8 @@ def init_app(app):
             funcionario = funcionario_controller.get_funcionario_by_codigo(staff_code)
             atendimento_controller.add_funcionario(atendimento, funcionario)
         atendimento_controller.update_status(atendimento)
-        return jsonify({ "message" : "success"})
-    
+        return jsonify({"message": "success"})
+
     @app.route("/novo-atendimento", methods=["GET", "POST"])
     def novo_atendimento():
         form = AtendimentoForm()
@@ -131,7 +133,7 @@ def init_app(app):
                     form.pet_data.append_entry()
                     form.pet_data.entries[0].dog.choices = pet_options
                     servicos = servico_controller.get_all()
-                    servicos_options = [(0 , "---")]
+                    servicos_options = [(0, "---")]
                     servicos_options += [(s.id, s.descricao) for s in servicos]
                     for i in range(MAX_ENTRIES):
                         form.servicos_data.append_entry()
@@ -142,7 +144,7 @@ def init_app(app):
                     form.cages_data.entries[0].available_cages.choices = [(g.id, str(g.numero)) for g in gaiolas]
                     return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
                 flash('Cliente não encontrado')
-        
+
         elif form.is_submitted():
             atendimento = atendimento_controller.create_atendimento("pendente")
             pet = pet_controller.get_pet_by_id(form.pet_data[0].dog.data)

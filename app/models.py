@@ -1,6 +1,7 @@
 from datetime import datetime
 from app import db
 
+
 class Cliente(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), index=True)
@@ -14,6 +15,7 @@ class Cliente(db.Model):
     def __repr__(self):
         return '<Cliente {}>'.format(self.nome)
 
+
 class Pet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), index=True)
@@ -22,15 +24,22 @@ class Pet(db.Model):
     pelagem = db.Column(db.String(50))
     obito = db.Column(db.Boolean, default=False)
     dono_id = db.Column(db.Integer, db.ForeignKey('cliente.id'))
-    atendimentos = db.relationship('Atendimento', backref='pet_atendido', lazy='dynamic')
+    atendimentos = db.relationship(
+        'Atendimento',
+        backref='pet_atendido',
+        lazy='dynamic'
+    )
 
     def __repr__(self):
         return '<Pet {}>'.format(self.nome)
 
-atendimento_servico = db.Table('atendimento_servico',
+
+atendimento_servico = db.Table(
+    'atendimento_servico',
     db.Column('atendimento_id', db.Integer, db.ForeignKey('atendimento.id')),
     db.Column('servico_id', db.Integer, db.ForeignKey('servico.id'))
 )
+
 
 class Atendimento(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -50,6 +59,7 @@ class Atendimento(db.Model):
     def __repr__(self):
         return '<Atendimento {}>'.format(self.pet_atendido)
 
+
 class Servico(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     descricao = db.Column(db.String(150))
@@ -58,6 +68,7 @@ class Servico(db.Model):
     def __repr__(self):
         return self.descricao
 
+
 class Funcionario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(64))
@@ -65,9 +76,10 @@ class Funcionario(db.Model):
     senha_hash = db.Column(db.String(256))
     codigo = db.Column(db.Integer, unique=True)
     cargo = db.Column(db.String(20), index=True)
-    
+
     def __repr__(self):
         return '<Funcionario {} | codigo {}'.format(self.nome, self.codigo)
+
 
 class Gaiola(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -1,8 +1,10 @@
 from app import create_app, db
-from app.models import Cliente, Pet, Atendimento, Servico, atendimento_servico, Funcionario, Gaiola
+from app.models import Cliente, Pet, Atendimento, Servico, \
+    atendimento_servico, Funcionario, Gaiola
 from app.scripts import popular_tabelas
 
 app = create_app()
+
 
 @app.shell_context_processor
 def make_shell_context():

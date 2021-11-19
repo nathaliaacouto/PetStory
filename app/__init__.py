@@ -3,8 +3,10 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
+
 db = SQLAlchemy()
 migrate = Migrate()
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -15,4 +17,5 @@ def create_app(config_class=Config):
 
     return app
 
-from app import routes, models
+
+from app import routes, models  # noqa: E402, F401

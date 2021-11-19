@@ -1,7 +1,8 @@
 from ctypes import c_char, c_int, cdll
 import os
 
-# servicos: array de strings 
+
+# servicos: array de strings
 def gerar_nfe(tamanho, servicos):
     try:
         integration_dir = os.path.abspath(os.path.dirname(__file__))
@@ -12,7 +13,7 @@ def gerar_nfe(tamanho, servicos):
         python_c_create_nfe.argtypes = [c_int, (((c_char) * 20) * tamanho)]
         python_c_create_nfe.restype = None
         tamanho_c = c_int(tamanho)
-        servicos_c = (((c_char) * 20) * tamanho) ()
+        servicos_c = (((c_char) * 20) * tamanho) ()  # noqa E211
         i = 0
         for s in servicos:
             servicos_c[i].value = s
@@ -21,5 +22,5 @@ def gerar_nfe(tamanho, servicos):
         print("chamando funcao em C...")
         python_c_create_nfe(tamanho_c, servicos_c)
         print("funcao em C chamada")
-    except:
+    except: # noqa E722
         print("Ocorreu um erro")
