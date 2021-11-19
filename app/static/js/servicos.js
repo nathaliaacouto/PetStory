@@ -21,8 +21,6 @@ $(document).ready(function(){
         data: { id : atendId, code: '' }
       })
     }
-    // let atendElem = $("#servico-card-" + atendId).detach();
-    // console.log(`movendo ${'servico-card' + atendId}`);
   })
 });
 

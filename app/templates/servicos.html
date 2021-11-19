@@ -38,9 +38,12 @@
             <p class="servico-card__funcionario">Sem Funcionário</p>
           </div>
           <div class="servico-card-row">
-            <div class="servico-card__pet-info">
-              <i class="fas fa-paw"></i>
-              <p class="pet-name">{{ atend.nome_pet }}</p>
+            <div class="servico-card-container">
+              <div class="servico-card__pet-info">
+                <i class="fas fa-paw"></i>
+                <p class="pet-name">{{ atend.nome_pet }}</p>
+              </div>
+              <p class="pet-breed">{{ atend.raca_pet }}</p>
             </div>
             <ul class="servicos">
               {% for s in atend.servicos %}
@@ -49,13 +52,14 @@
             </ul>
           </div>
           <div class="servico-card-row">
-              <p class="pet-breed">{{ atend.raca_pet }}</p>
-          </div>
-          <div class="servico-card-row">
               <p class="pet-collar">Coleira {{ atend.gaiola }}</p>
               <p class="pet-owner">Tutor: {{ atend.tutor }}</p>
           </div>
-          <button class="update-btn start-btn" data-bs-toggle="modal" data-bs-target="#codigo-modal" atend_id="{{ atend.id }}">Iniciar Serviço <i class="fas fa-play"></i></button>
+          <div class="servico-card-row">
+            <p>Observações:</p>
+            <p class="servico-obs"> {{atend.obs}} </p>
+          </div>
+          <button class="update-btn start-btn mt-3" data-bs-toggle="modal" data-bs-target="#codigo-modal" atend_id="{{ atend.id }}">Iniciar Serviço <i class="fas fa-play"></i></button>
         </div>
       {% endfor %}
     </div>
@@ -104,7 +108,11 @@
           <div class="servico-card-row">
             <p class="servico-card__funcionario">Funcionario {{ atend.funcionario }}</p>
           </div>
-          <button class="update-btn end-btn" atend_id="{{ atend.id }}">Serviço concluído <i class="fas fa-check-circle start-icon"></i></button>
+          <div class="servico-card-row">
+            <p>Observações:</p>
+            <p class="servico-obs"> {{atend.obs}} </p>
+          </div>
+          <button class="update-btn end-btn mt-3" atend_id="{{ atend.id }}">Serviço concluído <i class="fas fa-check-circle start-icon"></i></button>
         </div>
       {% endfor %}
     </div>
@@ -153,7 +161,11 @@
           <div class="servico-card-row">
             <p class="pet-owner">Tutor(a): {{ atend.tutor }}</p>
           </div>
-          <button class="update-btn next-btn" atend_id="{{ atend.id }}"><i class="fas fa-check-circle start-icon"></i> Gaiola disponível </i></button>
+          <div class="servico-card-row">
+            <p>Observações:</p>
+            <p class="servico-obs"> {{atend.obs}} </p>
+          </div>
+          <button class="update-btn next-btn mt-3" atend_id="{{ atend.id }}"><i class="fas fa-check-circle start-icon"></i> Gaiola disponível </i></button>
         </div>
       {% endfor %}
     </div>

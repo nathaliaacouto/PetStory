@@ -65,6 +65,7 @@ def init_app(app):
             servico['raca_pet'] = pet_info.raca
             servico['tutor'] = cliente_info.nome
             servico['servicos'] = [serv.descricao for serv in p.servicos]
+            servico['obs'] = p.obs or "Sem observações"
             atend_pendentes.append(servico)
 
         for a in em_andamento:
@@ -79,6 +80,7 @@ def init_app(app):
             servico['tutor'] = cliente_info.nome
             servico['funcionario'] = funcionario_info.nome
             servico['servicos'] = [serv.descricao for serv in a.servicos]
+            servico['obs'] = a.obs or "Sem observações"
             atend_andamento.append(servico)
             
         for c in concluidos:
@@ -93,6 +95,7 @@ def init_app(app):
             servico['tutor'] = cliente_info.nome
             servico['funcionario'] = funcionario_info.nome
             servico['servicos'] = [serv.descricao for serv in c.servicos]
+            servico['obs'] = c.obs or "Sem observações"
             atend_concluido.append(servico)
         return render_template(
             "servicos.html",
