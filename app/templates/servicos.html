@@ -29,7 +29,7 @@
             <p class="pet-collar">Coleira 10</p>
             <p class="pet-owner">Tutor: Gustavo</p>
         </div>
-        <button class="update-btn start-btn"  id="start-btn">Iniciar Serviço <i class="fas fa-play"></i></button>
+        <button class="update-btn start-btn" disabled="true">Iniciar Serviço <i class="fas fa-play"></i></button>
       </div>
       {% for atend in atend_pendentes %}
         <div class="col-lg-6 servico-card servico-card-pendente" id="servico-card-{{ atend.id }}">
@@ -79,7 +79,7 @@
         <div class="servico-card-row">
           <p class="servico-card__funcionario">Funcionario Carlos</p>
         </div>
-        <button class="update-btn end-btn" id="end-btn">Serviço concluído <i class="fas fa-check-circle start-icon"></i></button>
+        <button class="update-btn end-btn" disabled="true">Serviço concluído <i class="fas fa-check-circle start-icon"></i></button>
       </div>
       {% for atend in atend_andamento %}
         <div class="col-lg-6 servico-card servico-card-andamento" id="servico-card-{{ atend.id }}">
@@ -128,7 +128,7 @@
         <div class="servico-card-row">
           <p class="pet-owner">Tutor: Lucas Fernandes</p>
         </div>
-        <button class="update-btn next-btn" id="next-btn"><i class="fas fa-check-circle start-icon"></i> Gaiola disponível </i></button>
+        <button class="update-btn next-btn" disabled="true"><i class="fas fa-check-circle start-icon"></i> Gaiola disponível </i></button>
       </div>
       {% for atend in atend_concluido %}
         <div class="col-lg-6 servico-card servico-card-concluido" id="servico-card-{{ atend.id }}">
@@ -163,14 +163,14 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modal-title">Digite o Codigo</h5>
+        <h5 class="modal-title" id="modal-title">Digite o código do funcionário</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
       </div>
       <div class="modal-body">
         <input type="text" id="staff-code" class="form-control"/>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-dismiss="modal" id="confirm">Confirmar</button>
+        <button class="confirm-btn" data-bs-dismiss="modal" id="confirm">Confirmar</button>
       </div>
     </div>
   </div>
