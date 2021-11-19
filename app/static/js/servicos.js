@@ -24,4 +24,8 @@ $(document).ready(function(){
     // let atendElem = $("#servico-card-" + atendId).detach();
     // console.log(`movendo ${'servico-card' + atendId}`);
   })
-})
+});
+
+$(document).ajaxComplete(() => {
+  location.reload();
+});
