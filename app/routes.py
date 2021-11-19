@@ -160,3 +160,7 @@ def init_app(app):
             return redirect(url_for('novo_atendimento'))
         print(form.errors)
         return render_template("novo_atendimento.html", title="Novo Atendimento", form=form)
+
+    @app.route('/clientes')
+    def clientes():
+        return render_template('busca_clientes.html')
