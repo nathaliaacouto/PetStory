@@ -79,6 +79,9 @@ class AtendimentoController():
         db.session.add(atendimento)
         db.session.commit()
         return atendimento
+    
+    def get_atendimento_by_id(self, atend_id):
+        return Atendimento.query.filter_by(id=atend_id).first()
 
     def get_last_atendimento_by_id(self, pet_id):
         return  Atendimento.query.filter_by(pet_id=pet_id).first()
@@ -93,14 +96,26 @@ class AtendimentoController():
     def lock_gaiola(self, gaiola_id):
         gaiola = Gaiola.query.filter_by(id=gaiola_id).first()
         gaiola.disponivel = False
-        db.session.add(gaiola)
+        db.session.commit()
+    
+    def unlock_gaiola(self, gaiola_id):
+        gaiola = Gaiola.query.filter_by(id=gaiola_id).first()
+        gaiola.disponivel = True
         db.session.commit()
     
     def get_gaiola(self, atendimento):
         return Gaiola.query.filter_by(id=atendimento.gaiola).first()
     
-    def update_status(self, atendimento, novo_status):
-        pass
+    def update_status(self, atendimento):
+        if atendimento.status == "pendente":
+            atendimento.status = "em andamento"
+        elif atendimento.status == "em andamento":
+            atendimento.status = "concluido"
+        elif atendimento.status == "concluido":
+            self.unlock_gaiola(atendimento.gaiola)
+            atendimento.status = "arquivado"
+            
+        db.session.commit()
 
 class ServicoController():
     def get_servico_by_id(self, id):
@@ -128,3 +143,6 @@ class FuncionarioController():
             cargo=fields.get('cargo', None)
         )
         return funcionario
+    
+    def get_funcionario_by_codigo(self, codigo):
+        return Funcionario.query.filter_by(codigo=codigo).first()
