@@ -12,7 +12,7 @@ def test_registro_cliente():
     cliente = cliente_controller.create_cliente({
         "nome": "Alberto Silva",
         "telefone": "12340987",
-        "cpf": "89874102147",
+        "instagram": "albertosilva1",
         "cep": "32147452", 
         "endereco": "Rua Exemplo, 854",
         "email": "alberto@gmail.com"

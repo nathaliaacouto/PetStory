@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 nome_cliente = "Marcos da Silva"
 telefone = "12345678"
-cpf = "08476485267"
+instagram = "marcossilva"
 cep = "87412369"
 endereco = "Rua Que Nao Existe, 546"
 email = "marcos@silva.com"
@@ -25,7 +25,7 @@ def test_registro_interface(browser, app):
     browser.find_element(By.ID, "pets-0-fur").send_keys(pelagem)
     browser.find_element(By.ID, "pets-0-age").send_keys(idade)
     browser.find_element(By.ID, "owner").send_keys(nome_cliente)
-    browser.find_element(By.ID, "cpf").send_keys(cpf)
+    browser.find_element(By.ID, "instagram").send_keys(instagram)
     browser.find_element(By.ID, "zip_code").send_keys(cep)
     browser.find_element(By.ID, "address").send_keys(endereco)
     browser.find_element(By.ID, "phone").send_keys(telefone)

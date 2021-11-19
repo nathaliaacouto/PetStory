@@ -1,6 +1,6 @@
 from flask import render_template, redirect, flash, url_for, jsonify, request
 from app.forms import ClienteRegisterForm, AtendimentoForm
-from app.models import Cliente, Gaiola, Pet
+from app.models import Gaiola, Pet
 from app.controllers import AtendimentoController, ClienteController, PetController, ServicoController, FuncionarioController
 import app.integration as integration
 
@@ -24,14 +24,14 @@ def init_app(app):
             return render_template('registro.html', form=form)
 
         if form.validate_on_submit():
-            cliente = Cliente(
-                nome=form.owner.data,
-                telefone=form.phone.data,
-                cpf=form.cpf.data,
-                cep=form.zip_code.data,
-                endereco=form.address.data,
-                email=form.email.data,
-            )
+            cliente = cliente_controller.create_cliente({
+                'nome': form.owner.data,
+                'instagram': form.instagram.data,
+                'telefone': form.phone.data,
+                'cep': form.zip_code.data,
+                'endereco': form.address.data,
+                'email': form.email.data
+            })
             cliente_controller.add_cliente(cliente)
             for pet in form.pets:
                if pet.dog.data:

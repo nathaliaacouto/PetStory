@@ -5,7 +5,7 @@ class Cliente(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), index=True)
     telefone = db.Column(db.String(15))
-    cpf = db.Column(db.String(20))
+    instagram = db.Column(db.String(64))
     cep = db.Column(db.String(20))
     endereco = db.Column(db.String(100))
     email = db.Column(db.String(100), index=True)

@@ -5,8 +5,8 @@ class ClienteController():
     def create_cliente(self, fields):
         cliente = Cliente(
             nome=fields.get('nome', None),
+            instagram=fields.get('instagram', None),
             telefone=fields.get('telefone', None),
-            cpf=fields.get('cpf', None),
             cep=fields.get('cep', None),
             endereco=fields.get('endereco', None),
             email=fields.get('email', None)

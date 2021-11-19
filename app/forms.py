@@ -12,8 +12,8 @@ class PetRegisterForm(FlaskForm):
 
 class ClienteRegisterForm(FlaskForm):
     owner = StringField('* Nome do tutor', validators=[DataRequired("Campo Obrigatório")])
-    cpf = StringField('CPF')
     zip_code = StringField('CEP')
+    instagram = StringField('Instagram')
     address = StringField('Endereço')
     phone = StringField('* Telefone', validators=[DataRequired()])
     email = StringField('E-mail')
