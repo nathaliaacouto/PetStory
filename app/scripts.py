@@ -1,4 +1,4 @@
-from app.models import Gaiola, Servico
+from app.models import Funcionario, Gaiola, Servico
 from app import db
 
 def popular_tabelas():
@@ -22,4 +22,9 @@ def popular_tabelas():
     g9 = Gaiola(numero=9);
     g10 = Gaiola(numero=10);
     db.session.add_all([g1, g2, g3, g4, g5, g6, g7, g8, g9, g10])
+    db.session.commit()
+
+    f1 = Funcionario(nome="A", email="a@gmail.com", senha_hash="senhafuncionarioa", codigo=1234, cargo="OPERACOES")
+    f2 = Funcionario(nome="B", email="b@gmail.com", senha_hash="senhafuncionariob", codigo=2345, cargo="BALCAO")
+    db.session.add_all([f1, f2])
     db.session.commit()

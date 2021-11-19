@@ -1,7 +1,7 @@
-from flask import render_template, redirect, flash, url_for
+from flask import render_template, redirect, flash, url_for, jsonify, request
 from app.forms import ClienteRegisterForm, AtendimentoForm
 from app.models import Cliente, Gaiola, Pet
-from app.controllers import AtendimentoController, ClienteController, PetController, ServicoController
+from app.controllers import AtendimentoController, ClienteController, PetController, ServicoController, FuncionarioController
 import app.integration as integration
 
 def init_app(app):
@@ -9,6 +9,7 @@ def init_app(app):
     pet_controller = PetController()
     servico_controller = ServicoController()
     atendimento_controller = AtendimentoController()
+    funcionario_controller = FuncionarioController()
 
     @app.route("/")
     @app.route("/login")
@@ -49,24 +50,68 @@ def init_app(app):
     @app.route("/servicos")
     def servicos():
         atend_pendentes = []
+        atend_andamento = []
+        atend_concluido = []
         pendentes = atendimento_controller.list_atendimentos_by_status("pendente")
+        em_andamento = atendimento_controller.list_atendimentos_by_status("em andamento")
+        concluidos = atendimento_controller.list_atendimentos_by_status("concluido")
         for p in pendentes:
             servico = {}
             pet_info = pet_controller.get_pet_by_id(p.pet_id)
             cliente_info = cliente_controller.get_cliente_by_id(pet_info.dono_id)
+            servico['id'] = p.id
             servico['gaiola'] = p.gaiola
             servico['nome_pet'] = pet_info.nome
             servico['raca_pet'] = pet_info.raca
             servico['tutor'] = cliente_info.nome
             servico['servicos'] = [serv.descricao for serv in p.servicos]
             atend_pendentes.append(servico)
-        # andamento = atendimento_controller.list_atendimentos_by_status("em andamento")
-        # concluidos = atendimento_controller.list_atendimentos_by_status("concluido")
-        return render_template("servicos.html", title="Serviços", atend_pendentes=atend_pendentes)
+
+        for a in em_andamento:
+            servico = {}
+            pet_info = pet_controller.get_pet_by_id(a.pet_id)
+            cliente_info = cliente_controller.get_cliente_by_id(pet_info.dono_id)
+            funcionario_info = funcionario_controller.get_funcionario_by_codigo(a.codigo_func)
+            servico['id'] = a.id
+            servico['gaiola'] = a.gaiola
+            servico['nome_pet'] = pet_info.nome
+            servico['raca_pet'] = pet_info.raca
+            servico['tutor'] = cliente_info.nome
+            servico['funcionario'] = funcionario_info.nome
+            servico['servicos'] = [serv.descricao for serv in a.servicos]
+            atend_andamento.append(servico)
+            
+        for c in concluidos:
+            servico = {}
+            pet_info = pet_controller.get_pet_by_id(c.pet_id)
+            cliente_info = cliente_controller.get_cliente_by_id(pet_info.dono_id)
+            funcionario_info = funcionario_controller.get_funcionario_by_codigo(c.codigo_func)
+            servico['id'] = c.id
+            servico['gaiola'] = c.gaiola
+            servico['nome_pet'] = pet_info.nome
+            servico['raca_pet'] = pet_info.raca
+            servico['tutor'] = cliente_info.nome
+            servico['funcionario'] = funcionario_info.nome
+            servico['servicos'] = [serv.descricao for serv in c.servicos]
+            atend_concluido.append(servico)
+        return render_template(
+            "servicos.html",
+            title="Serviços",
+            atend_pendentes=atend_pendentes,
+            atend_andamento=atend_andamento,
+            atend_concluido=atend_concluido
+        )
     
     @app.route("/process-atendimento", methods=["POST"])
     def process_atendimento():
-        pass
+        atend_id = request.form["id"]
+        atendimento = atendimento_controller.get_atendimento_by_id(atend_id)
+        if request.form["code"]:
+            staff_code = int(request.form["code"])
+            funcionario = funcionario_controller.get_funcionario_by_codigo(staff_code)
+            atendimento_controller.add_funcionario(atendimento, funcionario)
+        atendimento_controller.update_status(atendimento)
+        return jsonify({ "message" : "success"})
     
     @app.route("/novo-atendimento", methods=["GET", "POST"])
     def novo_atendimento():

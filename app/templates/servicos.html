@@ -8,7 +8,7 @@
   <h1 class="marcar-txt mt-3 mb-5">Serviços</h1>
   <a class="add mb-5" href="/novo-atendimento">Adicionar novo serviço  <i class="far fa-arrow-alt-circle-down add-icon"></i></a>
   <div class="row mb-5" id="root">
-    <div class="col-lg-4 text-center">
+    <div class="col-lg-4 text-center" id="servicos-pendentes">
       <h2 class="servicos-heading pendente mb-3">Serviços a serem feitos</h2>
       <div class="col-lg-6 servico-card servico-card-pendente">
         <div class="servico-card-row">
@@ -29,10 +29,10 @@
             <p class="pet-collar">Coleira 10</p>
             <p class="pet-owner">Tutor: Gustavo</p>
         </div>
-        <button class="update-btn start-btn" id="start-btn">Iniciar Serviço <i class="fas fa-play"></i></button>
+        <button class="update-btn start-btn"  id="start-btn">Iniciar Serviço <i class="fas fa-play"></i></button>
       </div>
       {% for atend in atend_pendentes %}
-        <div class="col-lg-6 servico-card servico-card-pendente">
+        <div class="col-lg-6 servico-card servico-card-pendente" id="servico-card-{{ atend.id }}">
           <div class="servico-card-row">
             <p class="servico-card__gaiola">GAIOLA {{ atend.gaiola }}</p>
             <p class="servico-card__funcionario">Sem Funcionário</p>
@@ -55,11 +55,11 @@
               <p class="pet-collar">Coleira {{ atend.gaiola }}</p>
               <p class="pet-owner">Tutor: {{ atend.tutor }}</p>
           </div>
-          <button class="update-btn start-btn" id="start-btn">Iniciar Serviço <i class="fas fa-play"></i></button>
+          <button class="update-btn start-btn" data-bs-toggle="modal" data-bs-target="#codigo-modal" atend_id="{{ atend.id }}">Iniciar Serviço <i class="fas fa-play"></i></button>
         </div>
       {% endfor %}
     </div>
-    <div class="col-lg-4 text-center">
+    <div class="col-lg-4 text-center" id="servicos-andamento">
       <h2 class="servicos-heading andamento mb-3">Serviços em andamento</h2>
       <div class="col-lg-6 servico-card servico-card-andamento">
         <div class="servico-card-row">
@@ -81,8 +81,34 @@
         </div>
         <button class="update-btn end-btn" id="end-btn">Serviço concluído <i class="fas fa-check-circle start-icon"></i></button>
       </div>
+      {% for atend in atend_andamento %}
+        <div class="col-lg-6 servico-card servico-card-andamento" id="servico-card-{{ atend.id }}">
+          <div class="servico-card-row">
+            <div class="servico-card__pet-info">
+              <i class="fas fa-paw"></i>
+              <p class="pet-name">{{ atend.nome_pet }}</p>
+            </div>
+            <p class="pet-collar">Coleira {{ atend.gaiola }}</p>
+          </div>
+          <div class="servico-card-row">
+            <p class="pet-breed">{{ atend.raca_pet }}</p>
+          </div>
+          <div class="servico-card-row">
+            <div class="pet-owner">Tutor: {{ atend.tutor }}</div>
+            <div class="servicos">
+              {% for s in atend.servicos %}
+                <div class="servico-description">{{ s }}</div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="servico-card-row">
+            <p class="servico-card__funcionario">Funcionario {{ atend.funcionario }}</p>
+          </div>
+          <button class="update-btn end-btn" atend_id="{{ atend.id }}">Serviço concluído <i class="fas fa-check-circle start-icon"></i></button>
+        </div>
+      {% endfor %}
     </div>
-    <div class="col-lg-4 text-center">
+    <div class="col-lg-4 text-center" id="servicos-concluidos">
       <h2 class="servicos-heading concluido mb-3">Serviços concluídos</h2>
       <div class="col-lg-6 servico-card servico-card-concluido">
         <div class="servico-card-row">
@@ -103,6 +129,48 @@
           <p class="pet-owner">Tutor: Lucas Fernandes</p>
         </div>
         <button class="update-btn next-btn" id="next-btn"><i class="fas fa-check-circle start-icon"></i> Gaiola disponível </i></button>
+      </div>
+      {% for atend in atend_concluido %}
+        <div class="col-lg-6 servico-card servico-card-concluido" id="servico-card-{{ atend.id }}">
+          <div class="servico-card-row">
+            <p class="servico-card__gaiola">GAIOLA {{ atend.gaiola }}</p>
+            <p class="servico-card__funcionario">Funcionario(a) {{ atend.funcionario }}</p>
+          </div>
+          <div class="servico-card-row">
+            <div class="servico-card__pet-info">
+              <i class="fas fa-paw"></i>
+              <p class="pet-name">{{ atend.nome_pet }}</p>
+            </div>
+            <div class="servicos">
+              {% for s in atend.servicos %}
+                <div class="servico-description">{{ s }}</div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="servico-card-row">
+            <div class="pet-collar">Coleira {{ atend.gaiola }}</div>
+          </div>
+          <div class="servico-card-row">
+            <p class="pet-owner">Tutor(a): {{ atend.tutor }}</p>
+          </div>
+          <button class="update-btn next-btn" atend_id="{{ atend.id }}"><i class="fas fa-check-circle start-icon"></i> Gaiola disponível </i></button>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="codigo-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title">Digite o Codigo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="staff-code" class="form-control"/>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-dismiss="modal" id="confirm">Confirmar</button>
       </div>
     </div>
   </div>
