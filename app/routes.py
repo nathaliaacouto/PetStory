@@ -68,6 +68,8 @@ def init_app(app):
             servico['tutor'] = cliente_info.nome
             servico['servicos'] = [serv.descricao for serv in p.servicos]
             servico['obs'] = p.obs or "Sem observações"
+            servico['phone'] = cliente_info.telefone
+            servico['msg'] = "Olá {}, {} acabou de começar o serviço!".format(cliente_info.nome, pet_info.nome)
             atend_pendentes.append(servico)
 
         for a in em_andamento:
@@ -83,6 +85,8 @@ def init_app(app):
             servico['funcionario'] = funcionario_info.nome
             servico['servicos'] = [serv.descricao for serv in a.servicos]
             servico['obs'] = a.obs or "Sem observações"
+            servico['phone'] = cliente_info.telefone
+            servico['msg'] = "Olá {}, {} já está pronto(a) :)".format(cliente_info.nome, pet_info.nome)
             atend_andamento.append(servico)
 
         for c in concluidos:
@@ -98,6 +102,8 @@ def init_app(app):
             servico['funcionario'] = funcionario_info.nome
             servico['servicos'] = [serv.descricao for serv in c.servicos]
             servico['obs'] = c.obs or "Sem observações"
+            servico['phone'] = cliente_info.telefone
+            servico['msg'] = "Olá {}, por favor venha buscar seu pet!".format(cliente_info.nome, pet_info.nome)
             atend_concluido.append(servico)
         return render_template(
             "servicos.html",

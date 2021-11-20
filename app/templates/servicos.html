@@ -59,7 +59,10 @@
             <p>Observações:</p>
             <p class="servico-obs"> {{atend.obs}} </p>
           </div>
-          <button class="update-btn start-btn mt-3" data-bs-toggle="modal" data-bs-target="#codigo-modal" atend_id="{{ atend.id }}">Iniciar Serviço <i class="fas fa-play"></i></button>
+          <div class="servico-card__actions">
+            <button class="update-btn start-btn mt-3" data-bs-toggle="modal" data-bs-target="#codigo-modal" atend_id="{{ atend.id }}">Iniciar Serviço <i class="fas fa-play"></i></button>
+            <a class="notif-btn mt-3" href="https://api.whatsapp.com/send?phone=+55(81){{ atend.phone }}&text={{ atend.msg }}" target="__blank"><i class="fas fa-paper-plane"></i>  Notificar Tutor(a)</a>
+          </div>
         </div>
       {% endfor %}
     </div>
@@ -112,7 +115,10 @@
             <p>Observações:</p>
             <p class="servico-obs"> {{atend.obs}} </p>
           </div>
-          <button class="update-btn end-btn mt-3" atend_id="{{ atend.id }}">Serviço concluído <i class="fas fa-check-circle start-icon"></i></button>
+          <div class="servico-card__actions">
+            <button class="update-btn end-btn mt-3" atend_id="{{ atend.id }}">Serviço concluído <i class="fas fa-check-circle start-icon"></i></button>
+            <a class="notif-btn mt-3" href="https://api.whatsapp.com/send?phone=+55(81){{ atend.phone }}&text={{ atend.msg }}" target="__blank"><i class="fas fa-paper-plane"></i>  Notificar Tutor(a)</a>
+          </div>
         </div>
       {% endfor %}
     </div>
@@ -165,7 +171,10 @@
             <p>Observações:</p>
             <p class="servico-obs"> {{atend.obs}} </p>
           </div>
-          <button class="update-btn next-btn mt-3" atend_id="{{ atend.id }}"><i class="fas fa-check-circle start-icon"></i> Gaiola disponível </i></button>
+          <div class="servico-card__actions">
+            <button class="update-btn next-btn mt-3" atend_id="{{ atend.id }}"><i class="fas fa-check-circle start-icon"></i> Gaiola disponível </i></button>
+            <a class="notif-btn mt-3" href="https://api.whatsapp.com/send?phone=+55(81){{ atend.phone }}&text={{ atend.msg }}" target="__blank"><i class="fas fa-paper-plane"></i>  Notificar Tutor(a)</a>
+          </div>
         </div>
       {% endfor %}
     </div>
