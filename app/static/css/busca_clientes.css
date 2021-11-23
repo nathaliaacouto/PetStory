@@ -9,16 +9,25 @@ body {
         background-color: var(--petst-background-color);
 }
 
+.container1 {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+}
+
+.search {
+        display: flex;
+        justify-content: center;
+}
+
 .title {
         text-align: center;
-        margin-top: 10%;
+        margin-top: 5%;
         color: var(--petst-primary-color);
 }
 
 .d-flex {
         width: 40%;
-        position: absolute;
-        left: 30%;
 }
 
 .form-control {
@@ -40,11 +49,7 @@ body {
         border: none;
 }
 
-.container {
-        position: absolute;
-        top: 45%;
-        left: 7%;
-}
+
 
 li {
         margin-top: 10px;
