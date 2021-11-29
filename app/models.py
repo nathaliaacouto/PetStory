@@ -1,5 +1,6 @@
 from datetime import datetime
 from app import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class Cliente(db.Model):
@@ -76,6 +77,17 @@ class Funcionario(db.Model):
     senha_hash = db.Column(db.String(256))
     codigo = db.Column(db.Integer, unique=True)
     cargo = db.Column(db.String(20), index=True)
+
+    @property
+    def senha(self):
+        raise AttributeError('Senha não é um atributo legível!')
+
+    @senha.setter
+    def senha(self, senha):
+        self.senha_hash = generate_password_hash(senha)
+
+    def verificar_senha(self, senha):
+        return check_password_hash(self.senha_hash, senha)
 
     def __repr__(self):
         return '<Funcionario {} | codigo {}'.format(self.nome, self.codigo)
